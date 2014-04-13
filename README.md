@@ -1,4 +1,4 @@
-# Infraexam
+# Infrataster
 
 TODO: Write a gem description
 
@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'infraexam'
+    gem 'infrataster'
 
 And then execute:
 
@@ -14,15 +14,28 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install infraexam
+    $ gem install infrataster
 
 ## Usage
 
 TODO: Write usage instructions here
 
+## Example
+
+```
+$ cd example
+$ bundle install
+$ bundle exec berks vendor vendor/cookbooks
+$ vagrant up
+```
+
+## License
+
+* Browsermob Proxy (Apache 2.0)
+
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/infraexam/fork )
+1. Fork it ( http://github.com/ryotarai/infrataster/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

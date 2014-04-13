@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in infraexam.gemspec
+# Specify your gem's dependencies in infrataster.gemspec
 gemspec

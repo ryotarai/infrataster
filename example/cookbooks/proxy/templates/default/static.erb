@@ -1,0 +1,14 @@
+server {
+	listen   80;
+
+	root /usr/share/nginx/www;
+	index index.html index.htm;
+
+	server_name static;
+
+	location / {
+		try_files $uri $uri/ /index.html;
+	}
+}
+
+
