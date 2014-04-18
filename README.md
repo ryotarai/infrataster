@@ -28,7 +28,7 @@ $ rspec --init
   create   .rspec
 ```
 
-`require 'infrataster/rspec'` and define target servers for testing:
+`require 'infrataster/rspec'` and define target servers for testing in `spec_helper.rb`:
 
 ```ruby
 # spec_helper.rb
@@ -55,7 +55,7 @@ Infrataster::Server.define(
 )
 ```
 
-If you use `capybara`, you should download and extract [BrowserMob Proxy](http://bmp.lightbody.net/) and set `Infrataster::BrowsermobProxy.bin_path` to binary path:
+If you use `capybara`, you should download and extract [BrowserMob Proxy](http://bmp.lightbody.net/) and set `Infrataster::BrowsermobProxy.bin_path` to binary path in `spec_helper.rb`:
 
 ```ruby
 # spec_helper.rb
