@@ -4,6 +4,8 @@ Infrastructure Behavior Testing Framework.
 
 ## Usage
 
+**You can see [example directory](example) too.**
+
 First, create `Gemfile`:
 
 ```ruby
