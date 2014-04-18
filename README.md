@@ -28,7 +28,7 @@ $ rspec --init
   create   .rspec
 ```
 
-`require infrataster/rspec` and define target servers for testing:
+`require 'infrataster/rspec'` and define target servers for testing:
 
 ```ruby
 # spec_helper.rb
