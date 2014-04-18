@@ -55,7 +55,7 @@ Infrataster::Server.define(
 
 If you use `capybara`, you should download and extract [BrowserMob Proxy](http://bmp.lightbody.net/) and set `Infrataster::BrowsermobProxy.bin_path` to binary path:
 
-```
+```ruby
 # spec_helper.rb
 Infrataster::BrowsermobProxy.bin_path = '/path/to/browsermob/bin/browsermob'
 ```
