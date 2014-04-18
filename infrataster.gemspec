@@ -8,9 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Infrataster::VERSION
   spec.authors       = ["Ryota Arai"]
   spec.email         = ["ryota.arai@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Infrastructure Behavior Testing Framework}
+  spec.homepage      = "https://github.com/ryotarai/infrataster"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
