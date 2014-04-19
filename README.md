@@ -37,7 +37,7 @@ require 'infrataster/rspec'
 Infrataster::Server.define(
   :proxy,          # name
   '192.168.33.10', # ip address
-  vagrant: true,   # for vagrant VM
+  vagrant: true    # for vagrant VM
 )
 Infrataster::Server.define(
   :app,            # name
