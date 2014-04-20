@@ -14,7 +14,7 @@ module Infrataster
       def session
         return @session if @session
 
-        address, port, @gateway_finalize_proc = server.from_gateway(type.uri.port)
+        address, port, @gateway_finalize_proc = server.from_gateway_open(type.uri.port)
         Capybara.app_host = "http://#{address}:#{port}"
         @session = Capybara::Session.new(capybara_driver_name)
       end

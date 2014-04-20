@@ -8,10 +8,17 @@ module Infrataster
     Error = Class.new(StandardError)
 
     class << self
-      @@servers = []
 
       def define(*args)
         @@servers << Server.new(*args)
+      end
+
+      def defined_servers
+        @@servers
+      end
+
+      def clear_defined_servers
+        @@servers = []
       end
 
       def find_by_name(name)
@@ -22,6 +29,7 @@ module Infrataster
         server
       end
 
+      Server.clear_defined_servers
     end
 
     attr_reader :name, :address, :options
@@ -70,24 +78,24 @@ module Infrataster
       end
     end
 
+    def from_gateway_open(port)
+      if from
+        new_port, finalize_proc = from.gateway_open(@address, port)
+        Logger.debug("tunnel: localhost:#{new_port} -> #{from.address} -> #{@address}:#{port}")
+        ['127.0.0.1', new_port, finalize_proc]
+      else
+        [@address, port, nil]
+      end
+    end
+
     def from_gateway(port)
       if from
-        if block_given?
-          from.gateway_open(@address, port) do |new_port|
-            Logger.debug("tunnel: localhost:#{new_port} -> #{from.address} -> #{@address}:#{port}")
-            yield '127.0.0.1', new_port
-          end
-        else
-          new_port, finalize_proc = from.gateway_open(@address, port)
+        from.gateway_open(@address, port) do |new_port|
           Logger.debug("tunnel: localhost:#{new_port} -> #{from.address} -> #{@address}:#{port}")
-          ['127.0.0.1', new_port, finalize_proc]
+          yield '127.0.0.1', new_port
         end
       else
-        if block_given?
-          yield @address, port
-        else
-          [@address, port, nil]
-        end
+        yield @address, port
       end
     end
 
