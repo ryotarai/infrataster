@@ -124,6 +124,10 @@ end
 
 [infrataster/example](example)
 
+## Presentations
+
+* https://speakerdeck.com/ryotarai/infrataster-infra-behavior-testing-framework-number-oedo04
+
 ## Contributing
 
 1. Fork it ( http://github.com/ryotarai/infrataster/fork )
