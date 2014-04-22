@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe server(:app) do
   describe http('http://app') do
-    it "responds content including 'Hello Sinatra'" do
-      expect(response.body).to include('Hello Sinatra')
+    it "responds content including 'This is app server'" do
+      expect(response.body).to include('This is app server')
     end
     it "responds as 'text/html'" do
       expect(response.content_type).to eq('text/html')
@@ -13,9 +13,9 @@ describe server(:app) do
     end
   end
   describe capybara('http://app') do
-    it "responds content including 'Hello Sinatra'" do
+    it "responds content including 'This is app server'" do
       visit '/'
-      expect(page).to have_content('Hello Sinatra')
+      expect(page).to have_content('This is app server')
     end
   end
 end
@@ -31,8 +31,8 @@ end
 
 describe server(:proxy) do
   describe http('http://app') do
-    it "responds content including 'Hello Sinatra'" do
-      expect(response.body).to include('Hello Sinatra')
+    it "responds content including 'This is app server'" do
+      expect(response.body).to include('This is app server')
     end
     it "responds as 'text/html'" do
       expect(response.content_type).to eq('text/html')
@@ -47,9 +47,9 @@ describe server(:proxy) do
     end
   end
   describe capybara('http://app') do
-    it "responds content including 'Hello Sinatra'" do
+    it "responds content including 'This is app server'" do
       visit '/'
-      expect(page).to have_content('Hello Sinatra')
+      expect(page).to have_content('This is app server')
     end
   end
   describe capybara('http://static') do
