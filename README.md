@@ -124,6 +124,21 @@ end
 
 [infrataster/example](example)
 
+## How to Run Tests
+
+### Unit Tests
+
+```
+$ bundle install
+$ bundle exec rake spec:unit
+```
+
+### Integration Tests
+
+```
+$ bundle exec rake spec:integration
+```
+
 ## Presentations
 
 * https://speakerdeck.com/ryotarai/infrataster-infra-behavior-testing-framework-number-oedo04
