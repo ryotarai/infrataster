@@ -1,8 +1,8 @@
-require 'infrataster/types/base_type'
+require 'infrataster/resources/base_resource'
 
 module Infrataster
-  module Types
-    class MysqlQueryType < BaseType
+  module Resources
+    class MysqlQueryResource < BaseResource
       Error = Class.new(StandardError)
 
       attr_reader :query

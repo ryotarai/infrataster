@@ -1,9 +1,9 @@
 module Infrataster
-  module Types
-    class BaseType
+  module Resources
+    class BaseResource
       # do nothing
       def name
-        self.class.name.split('::').last[0...-4]
+        self.class.name.split('::').last[0...(-1 * 'Resource'.size)]
       end
 
       def context_class

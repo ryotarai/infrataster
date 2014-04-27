@@ -1,4 +1,4 @@
-require 'infrataster/types'
+require 'infrataster/resources'
 require 'infrataster/contexts/base_context'
 require 'infrataster/contexts/http_context'
 require 'infrataster/contexts/mysql_query_context'
@@ -10,21 +10,21 @@ module Infrataster
       def from_example(example)
         example_group = example.metadata[:example_group]
 
-        server = find_described(Types::ServerType, example_group).server
-        type = find_described(Types::BaseType, example_group)
+        server = find_described(Resources::ServerResource, example_group).server
+        resource = find_described(Resources::BaseResource, example_group)
 
-        type.context_class.new(server, type)
+        resource.context_class.new(server, resource)
       end
 
       private
-      def find_described(type_class, example_group)
+      def find_described(resource_class, example_group)
         arg = example_group[:description_args].first
-        if arg.is_a?(type_class)
+        if arg.is_a?(resource_class)
           arg
         else
           parent_example_group = example_group[:example_group]
           if parent_example_group
-            find_described(type_class, parent_example_group)
+            find_described(resource_class, parent_example_group)
           else
             raise Error
           end

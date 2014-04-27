@@ -14,7 +14,7 @@ module Infrataster
       def session
         return @session if @session
 
-        address, port, @gateway_finalize_proc = server.from_gateway_open(type.uri.port)
+        address, port, @gateway_finalize_proc = server.from_gateway_open(resource.uri.port)
         Capybara.app_host = "http://#{address}:#{port}"
         @session = Capybara::Session.new(capybara_driver_name)
       end
@@ -38,7 +38,7 @@ module Infrataster
       private
       def register_capybara_driver
         proxy = BrowsermobProxy.server.create_proxy
-        proxy.header({"Host" => type.uri.host})
+        proxy.header({"Host" => resource.uri.host})
 
         profile = Selenium::WebDriver::Firefox::Profile.new
         profile.proxy = proxy.selenium_proxy

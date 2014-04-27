@@ -1,5 +1,0 @@
-require 'infrataster/types/base_type'
-require 'infrataster/types/server_type'
-require 'infrataster/types/http_type'
-require 'infrataster/types/mysql_query_type'
-require 'infrataster/types/capybara_type'

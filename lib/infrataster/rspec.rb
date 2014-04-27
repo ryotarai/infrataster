@@ -1,7 +1,7 @@
 require 'infrataster'
 require 'rspec'
 
-include Infrataster::Helpers::TypeHelper
+include Infrataster::Helpers::ResourceHelper
 
 RSpec.configure do |config|
   config.include Infrataster::Helpers::RSpecHelper

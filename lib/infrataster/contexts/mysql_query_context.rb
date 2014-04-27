@@ -16,7 +16,7 @@ module Infrataster
             username: options[:user],
             password: options[:password],
           )
-          client.query(type.query)
+          client.query(resource.query)
         end
       end
     end

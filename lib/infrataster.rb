@@ -1,5 +1,5 @@
 require "infrataster/version"
-require "infrataster/types"
+require "infrataster/resources"
 require "infrataster/server"
 require "infrataster/helpers"
 require "infrataster/browsermob_proxy"

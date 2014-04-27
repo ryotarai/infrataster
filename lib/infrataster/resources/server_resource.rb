@@ -1,6 +1,6 @@
 module Infrataster
-  module Types
-    class ServerType
+  module Resources
+    class ServerResource
       Error = Class.new(StandardError)
 
       attr_reader :name

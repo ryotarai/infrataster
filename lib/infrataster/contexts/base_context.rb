@@ -2,11 +2,11 @@ module Infrataster
   module Contexts
     class BaseContext
       attr_reader :server
-      attr_reader :type
+      attr_reader :resource
 
-      def initialize(server, type)
+      def initialize(server, resource)
         @server = server
-        @type = type
+        @resource = resource
       end
     end
   end

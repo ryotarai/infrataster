@@ -1,9 +1,9 @@
-require 'infrataster/types/base_type'
+require 'infrataster/resources/base_resource'
 require 'uri'
 
 module Infrataster
-  module Types
-    class CapybaraType < BaseType
+  module Resources
+    class CapybaraResource < BaseResource
       Error = Class.new(StandardError)
 
       attr_reader :uri
