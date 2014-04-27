@@ -5,27 +5,34 @@
 VAGRANTFILE_API_VERSION = "2"
 COOKBOOK_PATH = ['./cookbooks', './vendor/cookbooks']
 
+INTERNAL_ADDRESSES = {
+  'proxy' => '172.16.44.10',
+  'app' => '172.16.44.11',
+}
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "hashicorp/precise64"
 
   config.vm.define :proxy do |c|
     c.vm.network "private_network", ip: "192.168.44.10"
-    c.vm.network "private_network", ip: "172.16.44.10", virtualbox__intnet: "infrataster-integration-test"
+    c.vm.network "private_network", ip: INTERNAL_ADDRESSES['proxy'], virtualbox__intnet: "infrataster-integration-test"
 
     c.vm.provision "chef_solo" do |chef|
       chef.cookbooks_path = COOKBOOK_PATH
       chef.add_recipe "apt-mirror"
-      chef.json = {}
+      chef.add_recipe "proxy"
+      chef.json = {'addresses' => INTERNAL_ADDRESSES}
     end
   end
 
   config.vm.define :app do |c|
-    c.vm.network "private_network", ip: '172.16.44.11', virtualbox__intnet: "infrataster-integration-test"
+    c.vm.network "private_network", ip: INTERNAL_ADDRESSES['app'], virtualbox__intnet: "infrataster-integration-test"
 
     c.vm.provision "chef_solo" do |chef|
       chef.cookbooks_path = COOKBOOK_PATH
       chef.add_recipe "apt-mirror"
-      chef.json = {}
+      chef.add_recipe "app"
+      chef.json = {'addresses' => INTERNAL_ADDRESSES}
     end
   end
 end
