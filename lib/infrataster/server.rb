@@ -60,16 +60,21 @@ module Infrataster
       finalize_proc.call
     end
 
-    def gateway_open(*args)
+    def gateway_open(host, port)
+      # find available local port
+      server = TCPServer.new('127.0.0.1', 0)
+      local_port = server.addr[1]
+      server.close
+
       if block_given?
         with_ssh_gateway do |gateway|
-          gateway.open(*args) do |port|
+          gateway.open(host, port, local_port) do |port|
             yield port
           end
         end
       else
         gateway, gateway_finalize_proc = ssh_gateway
-        port = gateway.open(*args)
+        port = gateway.open(host, port, local_port)
         finalize_proc = Proc.new do
           gateway.close(port)
           gateway_finalize_proc.call

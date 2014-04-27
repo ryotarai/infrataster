@@ -1,6 +1,6 @@
 require 'capybara'
 require 'capybara/rspec/matchers'
-require 'selenium-webdriver'
+require 'capybara/poltergeist'
 
 module Infrataster
   module Contexts
@@ -40,11 +40,11 @@ module Infrataster
         proxy = BrowsermobProxy.server.create_proxy
         proxy.header({"Host" => resource.uri.host})
 
-        profile = Selenium::WebDriver::Firefox::Profile.new
-        profile.proxy = proxy.selenium_proxy
-
         Capybara.register_driver capybara_driver_name do |app|
-          Capybara::Selenium::Driver.new(app, profile: profile)
+          Capybara::Poltergeist::Driver.new(
+            app,
+            phantomjs_options: ["--proxy=http://#{proxy.host}:#{proxy.port}"],
+          )
         end
       end
 
