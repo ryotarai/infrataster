@@ -13,8 +13,6 @@ namespace :spec do
   end
 
   RSpec::Core::RakeTask.new("integration") do |task|
-    Rake::Task['spec:integration:prepare'].invoke
-
     task.pattern = "./spec/integration{,/*/**}/*_spec.rb"
   end
 

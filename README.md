@@ -129,11 +129,18 @@ end
 ### Unit Tests
 
 ```
-$ bundle install
 $ bundle exec rake spec:unit
 ```
 
 ### Integration Tests
+
+Start and provision VMs:
+
+```
+$ bundle exec rake spec:integration:prepare
+```
+
+Run tests:
 
 ```
 $ bundle exec rake spec:integration
