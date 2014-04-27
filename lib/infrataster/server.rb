@@ -119,7 +119,10 @@ module Infrataster
 
         Dir.mktmpdir do |dir|
           output = File.join(dir, 'ssh-config')
-          system("/usr/bin/vagrant ssh-config #{vagrant_name} > #{output}")
+          `/usr/bin/vagrant ssh-config #{vagrant_name} > #{output}`
+          if $?.exitstatus != 0
+            raise Error, "`vagrant ssh-config` failed. Please check if VMs are running or not."
+          end
           config = Net::SSH::Config.for(@name.to_s, [output])
         end
       else
