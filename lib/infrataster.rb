@@ -8,5 +8,9 @@ require 'logger'
 
 module Infrataster
   Logger = ::Logger.new($stdout)
-  Logger.level = ::Logger::ERROR
+  if ENV['INFRATASTER_LOG']
+    Logger.level = ::Logger.const_get(ENV['INFRATASTER_LOG'].upcase)
+  else
+    Logger.level = ::Logger::ERROR
+  end
 end
