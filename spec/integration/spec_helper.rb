@@ -9,7 +9,8 @@ Infrataster::Server.define(
   :app,
   '172.16.44.11',
   vagrant: true,
-  from: :proxy
+  from: :proxy,
+  mysql: {user: 'app', password: 'app'},
 )
 
 Infrataster::BrowsermobProxy.bin_path = File.expand_path('../vm/vendor/browsermob/bin/browsermob-proxy', __FILE__)
