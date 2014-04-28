@@ -166,7 +166,12 @@ It accepts `method`, `params` and `header` as options.
 
 ```ruby
 describe server(:app) do
-  describe http('http://app.example.com', method: :post, params: {'foo' => 'bar'}, headers: {'USER' => 'VALUE'}) do
+  describe http(
+    'http://app.example.com',
+    method: :post,
+    params: {'foo' => 'bar'},
+    headers: {'USER' => 'VALUE'}
+  ) do
     it "responds with content including 'app'" do
       expect(response.body).to include('app')
 
