@@ -40,7 +40,8 @@ module Infrataster
         proxy = BrowsermobProxy.proxy
         proxy.header({"Host" => resource.uri.host})
 
-        address, port, @gateway_finalize_proc = server.from_gateway_open(resource.uri.port)
+        address, port, @gateway_finalize_proc =
+          server.open_gateway_on_from_server(resource.uri.port)
         Capybara.app_host = "http://#{address}:#{port}"
       end
 

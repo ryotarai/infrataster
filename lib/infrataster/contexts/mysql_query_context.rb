@@ -9,7 +9,7 @@ module Infrataster
           options = options.merge(server.options[:mysql])
         end
 
-        server.from_gateway(options[:port]) do |address, new_port|
+        server.gateway_on_from_server(options[:port]) do |address, new_port|
           client = Mysql2::Client.new(
             host: address,
             port: new_port,
