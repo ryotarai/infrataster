@@ -87,7 +87,7 @@ describe server(:app) do
       expect(response.body).to include('Hello Sinatra')
     end
     it "responds as 'text/html'" do
-      expect(response.header.content_type).to eq('text/html')
+      expect(response.headers['content-type']).to match(%r{^text/html})
     end
   end
 end
