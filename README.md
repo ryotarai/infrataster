@@ -106,7 +106,7 @@ It's time to write provisioning instruction like Chef's cookbooks or Puppet's ma
 
 ## Server
 
-"Server" is a server you tests. Vagrant is very useful to run servers for testing. Of course, you can test real servers.
+"Server" is a server you tests. This supports Vagrant, which is very useful to run servers for testing. Of course, you can test real servers.
 
 You should define servers in `spec_helper.rb` like the following:
 
