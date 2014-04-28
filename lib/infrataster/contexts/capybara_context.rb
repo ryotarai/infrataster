@@ -5,18 +5,29 @@ require 'capybara/poltergeist'
 module Infrataster
   module Contexts
     class CapybaraContext < BaseContext
+      def self.session
+        @session ||= prepare_session
+      end
+
+      def self.prepare_session
+        capybara_driver_name = :infrataster_driver
+
+        proxy = BrowsermobProxy.proxy
+        Capybara.register_driver capybara_driver_name do |app|
+          Capybara::Poltergeist::Driver.new(
+            app,
+            phantomjs_options: ["--proxy=http://#{proxy.host}:#{proxy.port}"],
+          )
+        end
+        Capybara::Session.new(capybara_driver_name)
+      end
+
       def initialize(*args)
         super(*args)
-
-        register_capybara_driver
       end
 
       def session
-        return @session if @session
-
-        address, port, @gateway_finalize_proc = server.from_gateway_open(resource.uri.port)
-        Capybara.app_host = "http://#{address}:#{port}"
-        @session = Capybara::Session.new(capybara_driver_name)
+        self.class.session
       end
 
       def page
@@ -25,6 +36,12 @@ module Infrataster
 
       def before_each(example)
         example.example_group_instance.extend(Capybara::RSpecMatchers)
+
+        proxy = BrowsermobProxy.proxy
+        proxy.header({"Host" => resource.uri.host})
+
+        address, port, @gateway_finalize_proc = server.from_gateway_open(resource.uri.port)
+        Capybara.app_host = "http://#{address}:#{port}"
       end
 
       def after_each(example)
@@ -33,23 +50,6 @@ module Infrataster
 
       def method_missing(method, *args)
         session.public_send(method, *args)
-      end
-
-      private
-      def register_capybara_driver
-        proxy = BrowsermobProxy.server.create_proxy
-        proxy.header({"Host" => resource.uri.host})
-
-        Capybara.register_driver capybara_driver_name do |app|
-          Capybara::Poltergeist::Driver.new(
-            app,
-            phantomjs_options: ["--proxy=http://#{proxy.host}:#{proxy.port}"],
-          )
-        end
-      end
-
-      def capybara_driver_name
-        :"selenium_via_proxy_#{hash}"
       end
     end
   end

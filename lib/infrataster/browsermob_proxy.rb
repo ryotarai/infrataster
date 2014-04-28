@@ -7,6 +7,10 @@ module Infrataster
         @server ||= start_server
       end
 
+      def proxy
+        @proxy ||= server.create_proxy
+      end
+
       def bin_path
         @bin_path
       end
@@ -29,3 +33,4 @@ module Infrataster
     end
   end
 end
+
