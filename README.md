@@ -179,6 +179,7 @@ describe server(:db) do
     end
   end
 end
+```
 
 ## Example
 
