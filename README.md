@@ -124,7 +124,8 @@ end
 
 ## Example
 
-[infrataster/example](example)
+* [example](example)
+* [spec/integration](spec/integration)
 
 ## How to Run Tests
 
