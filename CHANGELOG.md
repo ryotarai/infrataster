@@ -1,5 +1,9 @@
 # Infrataster Changelog
 
+## v0.1.3
+
+* Don't create multiple phantomjs and browsermob proxy. `capybara` resources become faster.
+
 ## v0.1.2
 
 * Use poltergeist (PhantomJS) as capybara driver instead of selenium-webdriver.
