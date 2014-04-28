@@ -4,7 +4,7 @@
 
 Infrastructure Behavior Testing Framework.
 
-## Usage with Vagrant
+## Basic Usage with Vagrant
 
 First, create `Gemfile`:
 
@@ -106,6 +106,45 @@ It's time to write provisioning instruction like Chef's cookbooks or Puppet's ma
 
 ## Server
 
+"Server" is a server you tests. Vagrant is very useful to run servers for testing. Of course, you can test real servers.
+
+You should define servers in `spec_helper.rb` like the following:
+
+```ruby
+Infrataster::Server.define(
+  # Name of the server, this will be used in the spec files.
+  :proxy,
+  # IP address of the server
+  '192.168.44.10',
+  # If the server is provided by vagrant and this option is true,
+  # SSH configuration to connect to this server is got from `vagrant ssh-config` command automatically.
+  vagrant: true,
+)
+
+Infrataster::Server.define(
+  # Name of the server, this will be used in the spec files.
+  :app,
+  # IP address of the server
+  '172.16.44.11',
+  # If the server is provided by vagrant and this option is true,
+  # SSH configuration to connect to this server is got from `vagrant ssh-config` command automatically.
+  vagrant: true,
+  # Which gateway is used to connect to this server by SSH port forwarding?
+  from: :proxy,
+  # options for resources
+  mysql: {user: 'app', password: 'app'},
+)
+```
+
+You can specify SSH configuration manually too:
+
+```ruby
+Infrataster::Server.define(
+  # ...
+  ssh: {host: 'hostname', user: 'testuser', keys: ['/path/to/id_rsa']}
+)
+```
+
 ## Resources
 
 "Resource" is what you test by Infrataster. For instance, the following code describes `http` resource.
@@ -179,6 +218,15 @@ describe server(:db) do
     end
   end
 end
+```
+
+You can specify username and password by options passed to `Infrataster::Server.define`:
+
+```ruby
+Infrataster::Server.define(
+  # ...
+  mysql: {user: 'app', password: 'app'}
+)
 ```
 
 ## Example
