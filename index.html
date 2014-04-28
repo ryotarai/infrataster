@@ -1,44 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Infrataster by ryotarai</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Infrataster : Infrastructure Acceptance Testing Framework" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Infrataster</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">Infrataster</h1>
-        <p class="header">Taste(Test) Your Infrastructure&#39;s Behavior!</p>
 
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/ryotarai/infrataster/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/ryotarai/infrataster/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/ryotarai/infrataster">View On GitHub</a></li>
-        </ul>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ryotarai/infrataster">View on GitHub</a>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/ryotarai">ryotarai</a></p>
+          <h1 id="project_title">Infrataster</h1>
+          <h2 id="project_tagline">Infrastructure Acceptance Testing Framework</h2>
 
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ryotarai/infrataster/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ryotarai/infrataster/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-      </header>
-      <section>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h1>
 <a name="infrataster" class="anchor" href="#infrataster"><span class="octicon octicon-link"></span></a>Infrataster</h1>
+
+<p><a href="http://badge.fury.io/rb/infrataster"><img src="https://badge.fury.io/rb/infrataster.png" alt="Gem Version"></a></p>
 
 <p>Infrastructure Behavior Testing Framework.</p>
 
 <h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
-
-<p><strong>You can see <a href="example">example directory</a> too.</strong></p>
+<a name="basic-usage-with-vagrant" class="anchor" href="#basic-usage-with-vagrant"><span class="octicon octicon-link"></span></a>Basic Usage with Vagrant</h2>
 
 <p>First, create <code>Gemfile</code>:</p>
 
@@ -50,6 +51,30 @@
 <p>Install gems:</p>
 
 <pre><code>$ bundle install
+</code></pre>
+
+<p>Install Vagrant: <a href="http://docs.vagrantup.com/v2/installation/index.html">Official Docs</a></p>
+
+<p>Create Vagrantfile:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># Vagrantfile</span>
+<span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="no">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">"hashicorp/precise64"</span>
+
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="ss">:proxy</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">"private_network"</span><span class="p">,</span> <span class="ss">ip</span><span class="p">:</span> <span class="s2">"192.168.33.10"</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">"private_network"</span><span class="p">,</span> <span class="ss">ip</span><span class="p">:</span> <span class="s2">"171.16.33.10"</span><span class="p">,</span> <span class="n">virtualbox__intnet</span><span class="p">:</span> <span class="s2">"infrataster-example"</span>
+  <span class="k">end</span>
+
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="ss">:app</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">"private_network"</span><span class="p">,</span> <span class="ss">ip</span><span class="p">:</span> <span class="s2">"171.16.33.11"</span><span class="p">,</span> <span class="n">virtualbox__intnet</span><span class="p">:</span> <span class="s2">"infrataster-example"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>Start VMs:</p>
+
+<pre><code>$ vagrant up
 </code></pre>
 
 <p>Initialize rspec directory:</p>
@@ -75,20 +100,8 @@
   <span class="ss">vagrant</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>   <span class="c1"># for vagrant VM</span>
   <span class="ss">from</span><span class="p">:</span> <span class="ss">:proxy</span>     <span class="c1"># access to this machine via SSH port forwarding from proxy</span>
 <span class="p">)</span>
-<span class="no">Infrataster</span><span class="o">::</span><span class="no">Server</span><span class="o">.</span><span class="n">define</span><span class="p">(</span>
-  <span class="ss">:db</span><span class="p">,</span>             <span class="c1"># name</span>
-  <span class="s1">'172.16.33.12'</span><span class="p">,</span>  <span class="c1"># ip address</span>
-  <span class="ss">vagrant</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>   <span class="c1"># for vagrant VM</span>
-  <span class="ss">from</span><span class="p">:</span> <span class="ss">:app</span><span class="p">,</span>      <span class="c1"># access to this machine via SSH port forwarding from app</span>
-  <span class="ss">mysql</span><span class="p">:</span> <span class="p">{</span><span class="ss">user</span><span class="p">:</span> <span class="s1">'app'</span><span class="p">,</span> <span class="ss">password</span><span class="p">:</span> <span class="s1">'app'</span><span class="p">}</span>
-                   <span class="c1"># settings for MySQL</span>
-<span class="p">)</span>
-</pre></div>
 
-<p>If you use <code>capybara</code>, you should download and extract <a href="http://bmp.lightbody.net/">BrowserMob Proxy</a> and set <code>Infrataster::BrowsermobProxy.bin_path</code> to binary path in <code>spec/spec_helper.rb</code>:</p>
-
-<div class="highlight highlight-ruby"><pre><span class="c1"># spec/spec_helper.rb</span>
-<span class="no">Infrataster</span><span class="o">::</span><span class="no">BrowsermobProxy</span><span class="o">.</span><span class="n">bin_path</span> <span class="o">=</span> <span class="s1">'/path/to/browsermob/bin/browsermob'</span>
+<span class="c1"># Code generated by `rspec --init` is following...</span>
 </pre></div>
 
 <p>Then, you can write spec files:</p>
@@ -102,71 +115,173 @@
       <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">'Hello Sinatra'</span><span class="p">)</span>
     <span class="k">end</span>
     <span class="n">it</span> <span class="s2">"responds as 'text/html'"</span> <span class="k">do</span>
-      <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">content_type</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">'text/html'</span><span class="p">)</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-  <span class="n">describe</span> <span class="n">capybara</span><span class="p">(</span><span class="s1">'http://app'</span><span class="p">)</span> <span class="k">do</span>
-    <span class="n">it</span> <span class="s2">"responds content including 'Hello Sinatra'"</span> <span class="k">do</span>
-      <span class="n">visit</span> <span class="s1">'/'</span>
-      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">'Hello Sinatra'</span><span class="p">)</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="n">describe</span> <span class="n">server</span><span class="p">(</span><span class="ss">:db</span><span class="p">)</span> <span class="k">do</span>
-  <span class="n">describe</span> <span class="n">mysql_query</span><span class="p">(</span><span class="s1">'SHOW STATUS'</span><span class="p">)</span> <span class="k">do</span>
-    <span class="n">it</span> <span class="s1">'responds uptime'</span> <span class="k">do</span>
-      <span class="n">row</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">find</span> <span class="p">{</span><span class="o">|</span><span class="n">r</span><span class="o">|</span> <span class="n">r</span><span class="o">[</span><span class="s1">'Variable_name'</span><span class="o">]</span> <span class="o">==</span> <span class="s1">'Uptime'</span> <span class="p">}</span>
-      <span class="n">expect</span><span class="p">(</span><span class="n">row</span><span class="o">[</span><span class="s1">'Value'</span><span class="o">].</span><span class="n">to_i</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span> <span class="o">&gt;</span> <span class="mi">0</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="n">describe</span> <span class="n">server</span><span class="p">(</span><span class="ss">:proxy</span><span class="p">)</span> <span class="k">do</span>
-  <span class="n">describe</span> <span class="n">http</span><span class="p">(</span><span class="s1">'http://app'</span><span class="p">)</span> <span class="k">do</span>
-    <span class="n">it</span> <span class="s2">"responds content including 'Hello Sinatra'"</span> <span class="k">do</span>
-      <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">'Hello Sinatra'</span><span class="p">)</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-  <span class="n">describe</span> <span class="n">http</span><span class="p">(</span><span class="s1">'http://static'</span><span class="p">)</span> <span class="k">do</span>
-    <span class="n">it</span> <span class="s2">"responds content including 'Welcome to nginx!'"</span> <span class="k">do</span>
-      <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">'Welcome to nginx!'</span><span class="p">)</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-  <span class="n">describe</span> <span class="n">capybara</span><span class="p">(</span><span class="s1">'http://app'</span><span class="p">)</span> <span class="k">do</span>
-    <span class="n">it</span> <span class="s2">"responds content including 'Hello Sinatra'"</span> <span class="k">do</span>
-      <span class="n">visit</span> <span class="s1">'/'</span>
-      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">'Hello Sinatra'</span><span class="p">)</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-  <span class="n">describe</span> <span class="n">capybara</span><span class="p">(</span><span class="s1">'http://static'</span><span class="p">)</span> <span class="k">do</span>
-    <span class="n">it</span> <span class="s2">"responds content including 'Welcome to nginx!'"</span> <span class="k">do</span>
-      <span class="n">visit</span> <span class="s1">'/'</span>
-      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">'Welcome to nginx!'</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">[</span><span class="s1">'content-type'</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">match</span><span class="p">(</span><span class="sr">%r{^text/html}</span><span class="p">)</span>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
 
+<p>Run tests:</p>
+
+<pre><code>$ bundle exec rspec
+2 examples, 2 failures
+</code></pre>
+
+<p>Currently, the tests failed because the VM doesn't respond to HTTP request.</p>
+
+<p>It's time to write provisioning instruction like Chef's cookbooks or Puppet's manifests!</p>
+
+<h2>
+<a name="server" class="anchor" href="#server"><span class="octicon octicon-link"></span></a>Server</h2>
+
+<p>"Server" is a server you tests. This supports Vagrant, which is very useful to run servers for testing. Of course, you can test real servers.</p>
+
+<p>You should define servers in <code>spec_helper.rb</code> like the following:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="no">Infrataster</span><span class="o">::</span><span class="no">Server</span><span class="o">.</span><span class="n">define</span><span class="p">(</span>
+  <span class="c1"># Name of the server, this will be used in the spec files.</span>
+  <span class="ss">:proxy</span><span class="p">,</span>
+  <span class="c1"># IP address of the server</span>
+  <span class="s1">'192.168.44.10'</span><span class="p">,</span>
+  <span class="c1"># If the server is provided by vagrant and this option is true,</span>
+  <span class="c1"># SSH configuration to connect to this server is got from `vagrant ssh-config` command automatically.</span>
+  <span class="ss">vagrant</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="no">Infrataster</span><span class="o">::</span><span class="no">Server</span><span class="o">.</span><span class="n">define</span><span class="p">(</span>
+  <span class="c1"># Name of the server, this will be used in the spec files.</span>
+  <span class="ss">:app</span><span class="p">,</span>
+  <span class="c1"># IP address of the server</span>
+  <span class="s1">'172.16.44.11'</span><span class="p">,</span>
+  <span class="c1"># If the server is provided by vagrant and this option is true,</span>
+  <span class="c1"># SSH configuration to connect to this server is got from `vagrant ssh-config` command automatically.</span>
+  <span class="ss">vagrant</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+  <span class="c1"># Which gateway is used to connect to this server by SSH port forwarding?</span>
+  <span class="ss">from</span><span class="p">:</span> <span class="ss">:proxy</span><span class="p">,</span>
+  <span class="c1"># options for resources</span>
+  <span class="ss">mysql</span><span class="p">:</span> <span class="p">{</span><span class="ss">user</span><span class="p">:</span> <span class="s1">'app'</span><span class="p">,</span> <span class="ss">password</span><span class="p">:</span> <span class="s1">'app'</span><span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+
+<p>You can specify SSH configuration manually too:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="no">Infrataster</span><span class="o">::</span><span class="no">Server</span><span class="o">.</span><span class="n">define</span><span class="p">(</span>
+  <span class="c1"># ...</span>
+  <span class="ss">ssh</span><span class="p">:</span> <span class="p">{</span><span class="ss">host</span><span class="p">:</span> <span class="s1">'hostname'</span><span class="p">,</span> <span class="ss">user</span><span class="p">:</span> <span class="s1">'testuser'</span><span class="p">,</span> <span class="ss">keys</span><span class="p">:</span> <span class="o">[</span><span class="s1">'/path/to/id_rsa'</span><span class="o">]</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+
+<h2>
+<a name="resources" class="anchor" href="#resources"><span class="octicon octicon-link"></span></a>Resources</h2>
+
+<p>"Resource" is what you test by Infrataster. For instance, the following code describes <code>http</code> resource.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="n">describe</span> <span class="n">server</span><span class="p">(</span><span class="ss">:app</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">describe</span> <span class="n">http</span><span class="p">(</span><span class="s1">'http://example.com'</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">"responds content including 'Hello Sinatra'"</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">'Hello Sinatra'</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>
+<a name="http-resource" class="anchor" href="#http-resource"><span class="octicon octicon-link"></span></a><code>http</code> resource</h3>
+
+<p><code>http</code> resource tests HTTP response when sending HTTP request.
+It accepts <code>method</code>, <code>params</code> and <code>header</code> as options.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="n">describe</span> <span class="n">server</span><span class="p">(</span><span class="ss">:app</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">describe</span> <span class="n">http</span><span class="p">(</span>
+    <span class="s1">'http://app.example.com'</span><span class="p">,</span>
+    <span class="nb">method</span><span class="p">:</span> <span class="ss">:post</span><span class="p">,</span>
+    <span class="ss">params</span><span class="p">:</span> <span class="p">{</span><span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">},</span>
+    <span class="ss">headers</span><span class="p">:</span> <span class="p">{</span><span class="s1">'USER'</span> <span class="o">=&gt;</span> <span class="s1">'VALUE'</span><span class="p">}</span>
+  <span class="p">)</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">"responds with content including 'app'"</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">'app'</span><span class="p">)</span>
+
+      <span class="c1"># `response` is a instance of `Faraday::Response`</span>
+      <span class="c1"># See: https://github.com/lostisland/faraday/blob/master/lib/faraday/response.rb</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>
+<a name="capybara-resource" class="anchor" href="#capybara-resource"><span class="octicon octicon-link"></span></a><code>capybara</code> resource</h3>
+
+<p><code>capybara</code> resource tests your web application by simulating real user's interaction.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="n">describe</span> <span class="n">server</span><span class="p">(</span><span class="ss">:app</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">describe</span> <span class="n">capybara</span><span class="p">(</span><span class="s1">'http://app.example.com'</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s1">'shows food list'</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="s1">'/'</span>
+      <span class="n">click_link</span> <span class="s1">'Foods'</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span> <span class="s1">'Yummy Soup'</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>If you use <code>capybara</code>, you should download and extract <a href="http://bmp.lightbody.net/">BrowserMob Proxy</a> and set <code>Infrataster::BrowsermobProxy.bin_path</code> to binary path in <code>spec/spec_helper.rb</code>:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># spec/spec_helper.rb</span>
+<span class="no">Infrataster</span><span class="o">::</span><span class="no">BrowsermobProxy</span><span class="o">.</span><span class="n">bin_path</span> <span class="o">=</span> <span class="s1">'/path/to/browsermob/bin/browsermob'</span>
+</pre></div>
+
+<p>(BrowserMob Proxy is needed to manipulate Host HTTP header.)</p>
+
+<h3>
+<a name="mysql_query-resource" class="anchor" href="#mysql_query-resource"><span class="octicon octicon-link"></span></a><code>mysql_query</code> resource</h3>
+
+<p><code>mysql_query</code> resource tests responce for mysql query.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="n">describe</span> <span class="n">server</span><span class="p">(</span><span class="ss">:db</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">describe</span> <span class="n">mysql_query</span><span class="p">(</span><span class="s1">'SHOW STATUS'</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s1">'returns positive uptime'</span> <span class="k">do</span>
+      <span class="n">row</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">find</span> <span class="p">{</span><span class="o">|</span><span class="n">r</span><span class="o">|</span> <span class="n">r</span><span class="o">[</span><span class="s1">'Variable_name'</span><span class="o">]</span> <span class="o">==</span> <span class="s1">'Uptime'</span> <span class="p">}</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">row</span><span class="o">[</span><span class="s1">'Value'</span><span class="o">].</span><span class="n">to_i</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+      <span class="c1"># `results` is a instance of `Mysql2::Result`</span>
+      <span class="c1"># See: https://github.com/brianmario/mysql2</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>You can specify username and password by options passed to <code>Infrataster::Server.define</code>:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="no">Infrataster</span><span class="o">::</span><span class="no">Server</span><span class="o">.</span><span class="n">define</span><span class="p">(</span>
+  <span class="c1"># ...</span>
+  <span class="ss">mysql</span><span class="p">:</span> <span class="p">{</span><span class="ss">user</span><span class="p">:</span> <span class="s1">'app'</span><span class="p">,</span> <span class="ss">password</span><span class="p">:</span> <span class="s1">'app'</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+
 <h2>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
 
-<p><a href="example">infrataster/example</a></p>
-
-<h2>
-<a name="how-to-run-tests" class="anchor" href="#how-to-run-tests"><span class="octicon octicon-link"></span></a>How to Run Tests</h2>
+<ul>
+<li><a href="example">example</a></li>
+<li><a href="spec/integration">spec/integration</a></li>
+</ul><h2>
+<a name="tests" class="anchor" href="#tests"><span class="octicon octicon-link"></span></a>Tests</h2>
 
 <h3>
 <a name="unit-tests" class="anchor" href="#unit-tests"><span class="octicon octicon-link"></span></a>Unit Tests</h3>
 
-<pre><code>$ bundle install
-$ bundle exec rake spec:unit
+<p>Unit tests are under <code>spec/unit</code> directory.</p>
+
+<pre><code>$ bundle exec rake spec:unit
 </code></pre>
 
 <h3>
 <a name="integration-tests" class="anchor" href="#integration-tests"><span class="octicon octicon-link"></span></a>Integration Tests</h3>
 
-<pre><code>$ bundle exec rake spec:integration
+<p>Integration tests are under <code>spec/integration</code> directory.</p>
+
+<pre><code>$ bundle exec rake spec:integration:prepare
+$ bundle exec rake spec:integration
 </code></pre>
 
 <h2>
@@ -175,6 +290,11 @@ $ bundle exec rake spec:unit
 <ul>
 <li><a href="https://speakerdeck.com/ryotarai/infrataster-infra-behavior-testing-framework-number-oedo04">https://speakerdeck.com/ryotarai/infrataster-infra-behavior-testing-framework-number-oedo04</a></li>
 </ul><h2>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
+
+<p><a href="CHANGELOG.md">Changelog</a></p>
+
+<h2>
 <a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
 
 <ol>
@@ -185,11 +305,17 @@ $ bundle exec rake spec:unit
 <li>Create new Pull Request</li>
 </ol>
       </section>
-      <footer>
-        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Infrataster maintained by <a href="https://github.com/ryotarai">ryotarai</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+
+    
+
   </body>
 </html>
