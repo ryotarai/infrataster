@@ -24,7 +24,7 @@ describe server(:app) do
     end
   end
 
-  describe http('http://app.example.com', path: '/path/to/resource', params: {'foo' => 'bar'}, headers: {'USER' => 'VALUE'}) do
+  describe http('http://app.example.com/path/to/resource', params: {'foo' => 'bar'}, headers: {'USER' => 'VALUE'}) do
     it "sends GET request with params" do
       expect(body_as_json['method']).to eq('GET')
       expect(body_as_json['path']).to eq('/path/to/resource')
