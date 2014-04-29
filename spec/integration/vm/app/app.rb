@@ -2,25 +2,21 @@ require 'sinatra'
 require 'json'
 
 get '/' do
-  result = {
-    'app' => 'sinatra',
-    'method' => 'GET',
-    'params' => params,
-    'headers' => RequestWrapper.new(request).headers,
-  }
-
   result.to_json
 end
 
 post '/' do
-  result = {
+  result.tap {|res| res['method'] = 'POST'}.to_json
+end
+
+def result
+  {
     'app' => 'sinatra',
-    'method' => 'POST',
+    'method' => 'GET',
+    'path' => request.path_info,
     'params' => params,
     'headers' => RequestWrapper.new(request).headers,
   }
-
-  result.to_json
 end
 
 class RequestWrapper
