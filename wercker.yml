@@ -1,0 +1,18 @@
+box: wercker/ruby
+build:
+  steps:
+    - script:
+        name: make ~/.ssh
+        code: mkdir -p $HOME/.ssh
+    - create-file:
+        name: put private key
+        filename: $HOME/.ssh/id_rsa
+        overrite: true
+        hide-from-log: true
+        content: $SSH_KEY_PRIVATE
+    - script:
+        name: pwd
+        code: pwd
+#    - script:
+#        name: install tugboat
+#        code: sudo gem install tugboat --no-ri --no-rdoc
