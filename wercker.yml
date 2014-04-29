@@ -11,7 +11,7 @@ build:
         hide-from-log: true
         content: $SSH_KEY_PRIVATE
     - script:
-        name: make id_rsa 600
+        name: chmod id_rsa
         code: chmod 600 $HOME/.ssh/id_rsa
     - create-file:
         name: put tugboat config
