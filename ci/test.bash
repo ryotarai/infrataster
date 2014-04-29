@@ -1,6 +1,6 @@
 set -e
 
-apt-get install -y git ruby2.1-dev libxslt1-dev libxml2-dev
+apt-get install -y git ruby2.1-dev libxslt1-dev libxml2-dev build-essential
 
 bundle install
 bundle exec rake spec:unit
