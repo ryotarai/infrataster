@@ -2,9 +2,6 @@ box: wercker/ruby
 build:
   steps:
     - script:
-        name: ls
-        code: ls
-    - script:
         name: make ~/.ssh
         code: mkdir -p $HOME/.ssh
     - create-file:
@@ -13,6 +10,9 @@ build:
         overrite: true
         hide-from-log: true
         content: $SSH_KEY_PRIVATE
+    - script:
+        name: make id_rsa 600
+        code: chmod 600 $HOME/.ssh/id_rsa
     - create-file:
         name: put tugboat config
         filename: $HOME/.tugboat
