@@ -10,9 +10,16 @@ build:
         overrite: true
         hide-from-log: true
         content: $SSH_KEY_PRIVATE
+    - create-file:
+        name: put tugboat config
+        filename: $HOME/.tugboat
+        overrite: true
+        hide-from-log: true
+        content: $TUGBOAT_CONFIG
     - script:
-        name: pwd
-        code: pwd
-#    - script:
-#        name: install tugboat
-#        code: sudo gem install tugboat --no-ri --no-rdoc
+        name: install tugboat
+        code: sudo gem install tugboat --no-ri --no-rdoc
+    - script:
+        name: show droplets
+        code: tugboat droplets
+
