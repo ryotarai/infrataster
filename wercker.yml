@@ -20,6 +20,16 @@ build:
         name: install tugboat
         code: sudo gem install tugboat --no-ri --no-rdoc
     - script:
-        name: show droplets
-        code: tugboat droplets
+        name: create droplets
+        code: tugboat create wercker-infrataster
+    - script:
+        name: wait droplets
+        code: tugboat wait wercker-infrataster
+    - script:
+        name: get ip address
+        code: export IPADDRESS=$(tugboat info wercker-infrataster | grep IP: | ruby -p -e 'sub(/.+?([\d\.]+)/, "\\1")')
+    - script:
+        name: show ip address
+        code: echo $IPADDRESS
+
 
