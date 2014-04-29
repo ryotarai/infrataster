@@ -5,7 +5,7 @@ module Infrataster
     class HttpContext < BaseContext
       def response
         server.gateway_on_from_server(resource.uri.port) do |address, port|
-          url = "#{resource.uri.scheme}://#{address}:#{port}"
+          url = "#{resource.uri.scheme}://#{address}:#{port}#{resource.options[:path]}"
 
           conn = Faraday.new(:url => url) do |faraday|
             faraday.request  :url_encoded

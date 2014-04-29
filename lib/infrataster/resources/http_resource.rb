@@ -9,7 +9,7 @@ module Infrataster
       attr_reader :uri, :options
 
       def initialize(url_str, options = {})
-        @options = {params: {}, method: :get, headers: {}}.merge(options)
+        @options = {params: {}, method: :get, path: '/', headers: {}}.merge(options)
         @uri = URI.parse(url_str)
         unless %w!http https!.include?(@uri.scheme)
           raise Error, "The provided url, '#{@uri}', is not http or https."

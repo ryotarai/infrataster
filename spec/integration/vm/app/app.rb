@@ -5,6 +5,10 @@ get '/' do
   result.to_json
 end
 
+get '/path/to/resource' do
+  result.to_json
+end
+
 post '/' do
   result.tap {|res| res['method'] = 'POST'}.to_json
 end
