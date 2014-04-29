@@ -10,13 +10,13 @@ get '/path/to/resource' do
 end
 
 post '/' do
-  result.tap {|res| res['method'] = 'POST'}.to_json
+  result.to_json
 end
 
 def result
   {
     'app' => 'sinatra',
-    'method' => 'GET',
+    'method' => request.request_method,
     'path' => request.path_info,
     'params' => params,
     'headers' => RequestWrapper.new(request).headers,
