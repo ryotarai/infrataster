@@ -33,7 +33,7 @@ build:
         code: tugboat create --size=63 --image=3375742 --region=6 $DROPLET
     - script:
         name: wait droplet
-        code: tugboat wait $DROPLET
+        code: timeout 180 tugboat wait $DROPLET
     - script:
         name: get ipaddress
         code: export IPADDRESS=$(./ci/get_droplet_ip $DROPLET)
