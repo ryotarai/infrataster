@@ -1,6 +1,7 @@
 # Infrataster
 
 [![Gem Version](https://badge.fury.io/rb/infrataster.png)](http://badge.fury.io/rb/infrataster)
+[![wercker status](https://app.wercker.com/status/bb6db6c7cb9c1a73b0afb7b77a3f8ecd/m/ "wercker status")](https://app.wercker.com/project/bykey/bb6db6c7cb9c1a73b0afb7b77a3f8ecd)
 
 Infrastructure Behavior Testing Framework.
 
