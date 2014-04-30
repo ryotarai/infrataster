@@ -1,5 +1,7 @@
 set -ex
 
+export CI=true
+
 apt-get update
 apt-get install -y unzip
 
