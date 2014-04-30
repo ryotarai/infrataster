@@ -29,7 +29,7 @@ namespace :spec do
         puts yellow("Downloading browsermob...")
         Dir.mktmpdir do |tmp|
           Dir.chdir(tmp) do
-            system("wget -O browsermob-proxy.zip https://s3-us-west-1.amazonaws.com/lightbody-bmp/browsermob-proxy-2.0-beta-9-bin.zip")
+            system("wget -q -O browsermob-proxy.zip https://s3-us-west-1.amazonaws.com/lightbody-bmp/browsermob-proxy-2.0-beta-9-bin.zip")
             system "unzip browsermob-proxy.zip"
           end
           FileUtils.mv(File.join(tmp, 'browsermob-proxy-2.0-beta-9'), dir)
