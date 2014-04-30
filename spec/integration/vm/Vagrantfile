@@ -11,7 +11,11 @@ INTERNAL_ADDRESSES = {
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "hashicorp/precise64"
+  if ENV['CI']
+    config.vm.box = "hashicorp/precise32"
+  else
+    config.vm.box = "hashicorp/precise64"
+  end
 
   config.vm.define :proxy do |c|
     c.vm.network "private_network", ip: "192.168.44.10"

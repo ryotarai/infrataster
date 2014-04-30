@@ -26,6 +26,9 @@ build:
         name: define droplet name
         code: export DROPLET=wercker-infrataster-$(date +%s)
     - script:
+        name: write droplet name to a file
+        code: echo $DROPLET > /tmp/droplet
+    - script:
         name: create droplet
         code: tugboat create --size=63 --image=3375742 --region=6 $DROPLET
     - script:
@@ -46,7 +49,7 @@ build:
   after-steps:
     - script:
         name: destory droplet
-        code: tugboat destroy -c $DROPLET
+        code: tugboat destroy -c $(cat /tmp/droplet)
 
 
 
