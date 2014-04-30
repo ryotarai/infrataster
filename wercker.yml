@@ -23,7 +23,30 @@ build:
         name: install tugboat
         code: sudo gem install tugboat --no-ri --no-rdoc
     - script:
-        name: run script
-        code: bash -x ./ci/script.bash
+        name: define droplet name
+        code: export DROPLET=wercker-infrataster-$(date +%s)
+    - script:
+        name: create droplet
+        code: tugboat create --size=63 --image=3375742 --region=6 $DROPLET
+    - script:
+        name: wait droplet
+        code: tugboat wait $DROPLET
+    - script:
+        name: get ipaddress
+        code: export IPADDRESS=$(./ci/get_droplet_ip $DROPLET)
+    - script:
+        name: wait 10 sec
+        code: sleep 10
+    - script:
+        name: rsync source
+        code: rsync -a -e "ssh -o 'StrictHostKeyChecking no'" . root@$IPADDRESS:~/src
+    - script:
+        name: run test script
+        code: ssh -o 'StrictHostKeyChecking no' root@$IPADDRESS 'cd src && bash -x ./ci/test.bash'
+  after-steps:
+    - script:
+        name: destory droplet
+        code: tugboat destroy -c $DROPLET
+
 
 

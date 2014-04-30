@@ -1,0 +1,2 @@
+#!/bin/bash
+tugboat info $1 | grep IP: | ruby -p -e 'sub(/.+?([\d\.]+)/, "\\1")'
