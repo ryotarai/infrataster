@@ -25,7 +25,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       chef.cookbooks_path = COOKBOOK_PATH
       chef.add_recipe "apt-mirror"
       chef.add_recipe "proxy"
-      chef.json = {'addresses' => INTERNAL_ADDRESSES}
+      chef.json = {
+        'addresses' => INTERNAL_ADDRESSES,
+        'ci' => !!(ENV['CI']),
+      }
     end
   end
 
@@ -36,7 +39,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       chef.cookbooks_path = COOKBOOK_PATH
       chef.add_recipe "apt-mirror"
       chef.add_recipe "app"
-      chef.json = {'addresses' => INTERNAL_ADDRESSES}
+      chef.json = {
+        'addresses' => INTERNAL_ADDRESSES,
+        'ci' => !!(ENV['CI']),
+      }
     end
   end
 end
