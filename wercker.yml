@@ -30,10 +30,10 @@ build:
         code: echo $DROPLET > /tmp/droplet
     - script:
         name: create droplet
-        code: tugboat create --size=62 --image=3375742 --region=6 --keys=82646,119695,119705 $DROPLET
+        code: tugboat create --size=62 --image=3375742 --region=3 --keys=82646,119695,119705 $DROPLET
     - script:
         name: wait droplet
-        code: timeout 1800 tugboat wait $DROPLET
+        code: tugboat wait $DROPLET
     - script:
         name: get ipaddress
         code: export IPADDRESS=$(./ci/get_droplet_ip $DROPLET)
