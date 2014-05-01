@@ -30,7 +30,7 @@ build:
         code: echo $DROPLET > /tmp/droplet
     - script:
         name: create droplet
-        code: tugboat create --size=62 --image=3410194 --region=3 --keys=82646,119695,119705 $DROPLET
+        code: tugboat create --size=62 --image=3410194 --region=4 --keys=82646,119695,119705 $DROPLET
     - script:
         name: wait droplet
         code: tugboat wait $DROPLET
