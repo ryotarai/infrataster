@@ -1,4 +1,4 @@
-cd /tmp
+pushd /tmp
 
 sudo apt-get update
 
@@ -14,9 +14,12 @@ vagrant box add --provider=virtualbox hashicorp/precise32
 sudo apt-get install -y python-software-properties
 sudo apt-add-repository -y ppa:brightbox/ruby-ng
 sudo apt-get update
-sudo apt-get install -y ruby2.1 git ruby2.1-dev libxslt1-dev libxml2-dev build-essential libgecode-dev libmysqlclient-dev phantomjs
+sudo apt-get install -y ruby2.1 git ruby2.1-dev libxslt1-dev libxml2-dev build-essential libgecode-dev libmysqlclient-dev phantomjs unzip
 
 sudo gem install bundler --no-ri --no-rdoc
 
+popd
+
+USE_SYSTEM_GECODE=1 bundle install --jobs=4
 
 
