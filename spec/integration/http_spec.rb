@@ -29,6 +29,7 @@ describe server(:app) do
       expect(body_as_json['method']).to eq('GET')
       expect(body_as_json['path']).to eq('/path/to/resource')
       expect(body_as_json['params']).to eq({"foo" => "bar"})
+      expect(body_as_json['headers']['USER']).not_to be_empty
       expect(body_as_json['headers']['USER']).to eq('VALUE')
     end
   end
