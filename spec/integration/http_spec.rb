@@ -37,6 +37,7 @@ describe server(:app) do
     it "sends POST request with params" do
       expect(body_as_json['method']).to eq('POST')
       expect(body_as_json['params']).to eq({"foo" => "bar"})
+      expect(body_as_json['headers']['USER']).not_to be_empty
       expect(body_as_json['headers']['USER']).to eq('VALUE')
     end
   end
