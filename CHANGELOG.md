@@ -1,5 +1,10 @@
 # Infrataster Changelog
 
+## v0.1.4
+
+* Include RSpec::Matchers to use be_xxx matchers. (by @KitaitiMakoto)
+* Don't raise any error for subjects which is not related to Infrataster. (by @KitaitiMakoto)
+
 ## v0.1.3
 
 * Don't create multiple phantomjs and browsermob proxy. `capybara` resources become faster.
