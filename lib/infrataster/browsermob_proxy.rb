@@ -21,7 +21,7 @@ module Infrataster
 
       private
       def start_server
-        BrowserMob::Proxy::Server.new(find_bin).tap do |server|
+        BrowserMob::Proxy::Server.new(find_bin, timeout: 60).tap do |server|
           server.start
         end
       end

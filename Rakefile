@@ -20,6 +20,9 @@ namespace :spec do
   namespace :integration do
     integration_dir = 'spec/integration'
 
+    task :clean => ['destroy_vm', 'remove_berks'] do
+    end
+
     task :prepare => ['download_browsermob', 'start_vm'] do
     end
 
@@ -55,6 +58,16 @@ namespace :spec do
     task :start_vm => ['berks_vendor'] do
       puts yellow('Starting VM...')
       system '/usr/bin/vagrant up'
+    end
+
+    task :destroy_vm do
+      puts yellow('Destroying VM...')
+      system '/usr/bin/vagrant destroy -f'
+    end
+
+    task :remove_berks do
+      dir = File.join(integration_dir, 'vm/vendor/cookbooks')
+      FileUtils.rm_rf(dir)
     end
   end
 end
