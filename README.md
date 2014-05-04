@@ -1,6 +1,7 @@
 # Infrataster
 
 [![Gem Version](https://badge.fury.io/rb/infrataster.png)](http://badge.fury.io/rb/infrataster)
+[![Build Status](http://ci.ryotarai.info/job/infrataster/badge/icon)](http://ci.ryotarai.info/job/infrataster/)
 
 Infrastructure Behavior Testing Framework.
 
