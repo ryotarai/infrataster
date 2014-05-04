@@ -17,6 +17,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = "hashicorp/precise64"
   end
 
+  if ENV['CI']
+    config.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--memory", "256"]
+      v.customize ["modifyvm", :id, "--memory", "256"]
+    end
+  end
+
   config.vm.define :proxy do |c|
     c.vm.network "private_network", ip: "192.168.44.10"
     c.vm.network "private_network", ip: INTERNAL_ADDRESSES['proxy'], virtualbox__intnet: "infrataster-integration-test"
