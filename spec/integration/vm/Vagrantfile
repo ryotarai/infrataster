@@ -20,7 +20,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if ENV['CI']
     config.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--memory", "256"]
-      v.customize ["modifyvm", :id, "--memory", "256"]
     end
   end
 
