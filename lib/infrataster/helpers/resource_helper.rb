@@ -3,6 +3,8 @@ require 'infrataster/resources'
 module Infrataster
   module Helpers
     module ResourceHelper
+      include RSpec::Matchers
+
       def server(*args)
         Resources::ServerResource.new(*args)
       end
