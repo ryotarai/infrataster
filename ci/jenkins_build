@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+def exec(cmd, exit_if_fail = true)
+  env = {'CI' => 'true'}
+  system env, cmd
+  if exit_if_fail && $?.exitstatus != 0
+    puts "`#{cmd}` failed"
+    exit $?.exitstatus
+  end
+
+  $?.exitstatus
+end
+
+exec 'bundle install --path=vendor/bundle --jobs=4'
+
+exec 'bundle exec rake spec:unit'
+
+exec 'bundle exec rake spec:integration:prepare'
+status = exec('bundle exec rake spec:integration', false)
+exec 'bundle exec rake spec:integration:clean'
+exit status
+
