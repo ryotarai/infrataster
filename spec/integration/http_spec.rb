@@ -1,6 +1,12 @@
 require 'integration/spec_helper'
 require 'json'
 
+describe 'Normal subject not related to Infrataster' do
+  it "doesn't raise any error" do
+    expect(subject).not_to raise_error
+  end
+end
+
 describe server(:proxy) do
   describe http('http://app.example.com') do
     it "sends GET request with Host header" do

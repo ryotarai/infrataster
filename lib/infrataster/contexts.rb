@@ -10,10 +10,12 @@ module Infrataster
       def from_example(example)
         example_group = example.metadata[:example_group]
 
-        server = find_described(Resources::ServerResource, example_group).server
+        server_resource = find_described(Resources::ServerResource, example_group)
         resource = find_described(Resources::BaseResource, example_group)
 
-        resource.context_class.new(server, resource)
+        return if [server_resource, resource].any? &:nil?
+
+        resource.context_class.new(server_resource.server, resource)
       end
 
       private
@@ -25,8 +27,6 @@ module Infrataster
           parent_example_group = example_group[:example_group]
           if parent_example_group
             find_described(resource_class, parent_example_group)
-          else
-            raise Error
           end
         end
       end
