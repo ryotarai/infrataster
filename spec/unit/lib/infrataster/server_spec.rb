@@ -44,6 +44,57 @@ module Infrataster
         expect(gateway).to eq(gateway_mock)
       end
     end
+
+    describe "#_ssh_start_args" do
+      context "with ssh option" do
+        context "when options[:ssh][:host] is set" do
+          it 'returns args for SSH.start' do
+            server = Server.new('name', 'address', ssh: {host: 'host', user: 'user'})
+            expect(server.send(:_ssh_start_args)).
+              to eq(['host', 'user', {host: 'host', user: 'user'}])
+          end
+        end
+
+        context "when options[:ssh][:host] is not set" do
+          it 'returns args for SSH.start' do
+            server = Server.new('name', 'address', ssh: {user: 'user'})
+            expect(server.send(:_ssh_start_args)).
+              to eq(['address', 'user', {host: 'address', user: 'user'}])
+          end
+        end
+      end
+      
+      context "with vagrant option" do
+        context "when vagrant option is true" do
+          it 'returns args for SSH.start' do
+            server = Server.new('name', 'address', vagrant: true)
+            expect(server).to receive(:ssh_config_for_vagrant).with('name').
+              and_return({host: 'host', user: 'user'})
+            expect(server.send(:_ssh_start_args)).
+              to eq(['host', 'user', {host: 'host', user: 'user'}])
+          end
+        end
+
+        context "when vagrant option is not true but truthy" do
+          it 'returns args for SSH.start' do
+            server = Server.new('name', 'address', vagrant: 'vagrant_vm_name')
+            expect(server).to receive(:ssh_config_for_vagrant).with('vagrant_vm_name').
+              and_return({host: 'host', user: 'user'})
+            expect(server.send(:_ssh_start_args)).
+              to eq(['host', 'user', {host: 'host', user: 'user'}])
+          end
+        end
+      end
+
+      context "otherwise" do
+        it 'raises an error' do
+          server = Server.new('name', 'address')
+          expect do
+            server.send(:_ssh_start_args)
+          end.to raise_error(Server::Error)
+        end
+      end
+    end
   end
 end
 

@@ -111,12 +111,12 @@ module Infrataster
 
     private
 
-
     def _ssh_start_args
       config = {}
 
       if @options[:ssh]
         config = @options[:ssh]
+        config[:host] ||= @address
       elsif @options[:vagrant]
         vagrant_name = if @options[:vagrant] != true
                          @options[:vagrant]
