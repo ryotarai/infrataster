@@ -8,6 +8,10 @@ end
 
 ENV['VAGRANT_CWD'] = File.expand_path('spec/integration/vm')
 
+
+desc 'Run unit and integration tests'
+task :spec => ['spec:unit', 'spec:integration']
+
 namespace :spec do
   RSpec::Core::RakeTask.new("unit") do |task|
     task.pattern = "./spec/unit{,/*/**}/*_spec.rb"
@@ -20,9 +24,11 @@ namespace :spec do
   namespace :integration do
     integration_dir = 'spec/integration'
 
+    desc 'Clean'
     task :clean => ['destroy_vm', 'remove_berks'] do
     end
 
+    desc 'Prepare'
     task :prepare => ['download_browsermob', 'start_vm'] do
     end
 
