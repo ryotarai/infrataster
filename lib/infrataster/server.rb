@@ -85,23 +85,23 @@ module Infrataster
     end
 
     def open_gateway_on_from_server(port)
-      if from
-        new_port, finalize_proc = from.gateway_open(@address, port)
-        Logger.debug("tunnel: localhost:#{new_port} -> #{from.address} -> #{@address}:#{port}")
-        ['127.0.0.1', new_port, finalize_proc]
-      else
-        [@address, port, nil]
-      end
-    end
-
-    def gateway_on_from_server(port)
-      if from
-        from.gateway_open(@address, port) do |new_port|
-          Logger.debug("tunnel: localhost:#{new_port} -> #{from.address} -> #{@address}:#{port}")
-          yield '127.0.0.1', new_port
+      if block_given?
+        if from
+          from.gateway_open(@address, port) do |new_port|
+            Logger.debug("tunnel: localhost:#{new_port} -> #{from.address} -> #{@address}:#{port}")
+            yield '127.0.0.1', new_port
+          end
+        else
+          yield @address, port
         end
       else
-        yield @address, port
+        if from
+          new_port, finalize_proc = from.gateway_open(@address, port)
+          Logger.debug("tunnel: localhost:#{new_port} -> #{from.address} -> #{@address}:#{port}")
+          ['127.0.0.1', new_port, finalize_proc]
+        else
+          [@address, port, nil]
+        end
       end
     end
 
