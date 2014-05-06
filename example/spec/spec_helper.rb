@@ -1,4 +1,5 @@
 require 'infrataster/rspec'
+require 'infrataster-plugin-mysql'
 
 Infrataster::Server.define(
   :proxy,

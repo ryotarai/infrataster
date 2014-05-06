@@ -6,10 +6,10 @@ describe server(:app) do
       expect(response.body).to include('This is app server')
     end
     it "responds as 'text/html'" do
-      expect(response.content_type).to eq('text/html')
+      expect(response['content-type']).to eq('text/html')
     end
     it "responds OK 200" do
-      expect(response.code).to eq('200')
+      expect(response.status).to eq(200)
     end
   end
   describe capybara('http://app') do
@@ -35,7 +35,7 @@ describe server(:proxy) do
       expect(response.body).to include('This is app server')
     end
     it "responds as 'text/html'" do
-      expect(response.content_type).to eq('text/html')
+      expect(response['content-type']).to eq('text/html')
     end
   end
   describe http('http://static') do
@@ -43,7 +43,7 @@ describe server(:proxy) do
       expect(response.body).to include('Welcome to nginx!')
     end
     it "responds as 'text/html'" do
-      expect(response.content_type).to eq('text/html')
+      expect(response['content-type']).to eq('text/html')
     end
   end
   describe capybara('http://app') do
