@@ -2,6 +2,7 @@ require 'tmpdir'
 require 'net/ssh'
 require 'net/ssh/gateway'
 require 'ipaddr'
+require 'shellwords'
 
 module Infrataster
   class Server
@@ -124,7 +125,7 @@ module Infrataster
 
         Dir.mktmpdir do |dir|
           output = File.join(dir, 'ssh-config')
-          `/usr/bin/vagrant ssh-config #{vagrant_name} > #{output}`
+          `/usr/bin/vagrant ssh-config #{Shellwords.shellescape(vagrant_name)} > #{Shellwords.shellescape(output)}`
           if $?.exitstatus != 0
             raise Error, "`vagrant ssh-config` failed. Please check if VMs are running or not."
           end
