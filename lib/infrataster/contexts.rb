@@ -1,7 +1,6 @@
 require 'infrataster/resources'
 require 'infrataster/contexts/base_context'
 require 'infrataster/contexts/http_context'
-require 'infrataster/contexts/mysql_query_context'
 require 'infrataster/contexts/capybara_context'
 
 module Infrataster
