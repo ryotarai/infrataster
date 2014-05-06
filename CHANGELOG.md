@@ -1,5 +1,9 @@
 # Infrataster Changelog
 
+## v0.1.5
+
+* Extract mysql resource to [infrataster-plugin-mysql](https://github.com/ryotarai/infrataster-plugin-mysql).
+
 ## v0.1.4
 
 * Include RSpec::Matchers to use be_xxx matchers. (by @KitaitiMakoto)
