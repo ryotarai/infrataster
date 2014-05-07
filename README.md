@@ -28,7 +28,7 @@ Create Vagrantfile:
 
 ```ruby
 # Vagrantfile
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+Vagrant.configure("2") do |config|
   config.vm.box = "hashicorp/precise64"
 
   config.vm.define :proxy do |c|
