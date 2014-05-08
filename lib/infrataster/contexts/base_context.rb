@@ -8,6 +8,10 @@ module Infrataster
         @server = server
         @resource = resource
       end
+
+      def current_server
+        @server
+      end
     end
   end
 end

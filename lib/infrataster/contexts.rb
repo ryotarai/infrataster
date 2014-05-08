@@ -1,5 +1,6 @@
 require 'infrataster/resources'
 require 'infrataster/contexts/base_context'
+require 'infrataster/contexts/no_resource_context'
 require 'infrataster/contexts/http_context'
 require 'infrataster/contexts/capybara_context'
 
@@ -12,7 +13,15 @@ module Infrataster
         server_resource = find_described(Resources::ServerResource, example_group)
         resource = find_described(Resources::BaseResource, example_group)
 
-        return if [server_resource, resource].any? &:nil?
+        unless server_resource || resource
+          # There is neither server_resource or resource
+          return nil
+        end
+
+        if server_resource && !resource
+          # Server is found but resource is not found
+          return Contexts::NoResourceContext.new(server_resource.server)
+        end
 
         resource.context_class.new(server_resource.server, resource)
       end

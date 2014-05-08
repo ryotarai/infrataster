@@ -147,6 +147,25 @@ Infrataster::Server.define(
 )
 ```
 
+### #ssh_exec
+
+You can execute a command on the server like the following:
+
+```ruby
+describe server(:proxy) do
+  let(:time) { Time.now }
+  before do
+    current_server.ssh_exec "echo 'Hello' > /tmp/test-#{time.to_i}"
+  end
+  it "executes a command on the current server" do
+    result = current_server.ssh_exec("cat /tmp/test-#{time.to_i}")
+    expect(result.chomp).to eq('Hello')
+  end
+end
+```
+
+This is useful to test cases which depends on the status of the server.
+
 ## Resources
 
 "Resource" is what you test by Infrataster. For instance, the following code describes `http` resource.
