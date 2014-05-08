@@ -1,5 +1,9 @@
 # Infrataster Changelog
 
+## v0.1.6
+
+* Implement `Server#ssh\_exec` which executes a command on the server via SSH.
+
 ## v0.1.5
 
 * Extract mysql resource to [infrataster-plugin-mysql](https://github.com/ryotarai/infrataster-plugin-mysql).
