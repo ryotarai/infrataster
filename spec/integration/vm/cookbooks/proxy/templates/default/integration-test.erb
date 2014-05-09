@@ -1,6 +1,9 @@
 server {
 	listen 80;
 
+	gzip on;
+	gzip_min_length 0;
+
 	root /usr/share/nginx/www;
 	index index.html index.htm;
 
