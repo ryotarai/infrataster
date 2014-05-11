@@ -5,21 +5,21 @@ require 'capybara/poltergeist'
 module Infrataster
   module Contexts
     class CapybaraContext < BaseContext
+      CAPYBARA_DRIVER_NAME = :infrataster_driver
+
       def self.session
         @session ||= prepare_session
       end
 
       def self.prepare_session
-        capybara_driver_name = :infrataster_driver
-
         proxy = BrowsermobProxy.proxy
-        Capybara.register_driver capybara_driver_name do |app|
+        Capybara.register_driver CAPYBARA_DRIVER_NAME do |app|
           Capybara::Poltergeist::Driver.new(
             app,
             phantomjs_options: ["--proxy=http://#{proxy.host}:#{proxy.port}"],
           )
         end
-        Capybara::Session.new(capybara_driver_name)
+        Capybara::Session.new(CAPYBARA_DRIVER_NAME)
       end
 
       def initialize(*args)
