@@ -1,3 +1,4 @@
+require 'rspec'
 require 'infrataster/resources'
 
 module Infrataster
