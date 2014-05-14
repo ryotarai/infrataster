@@ -124,7 +124,7 @@ module Infrataster
 
       if @options[:ssh]
         config = @options[:ssh]
-        config[:host] ||= @address
+        config[:host_name] ||= @address
       elsif @options[:vagrant]
         vagrant_name = if @options[:vagrant] != true
                          @options[:vagrant]
@@ -136,7 +136,7 @@ module Infrataster
         raise Error, "Can't get configuration to connect to the server via SSH. Please set ssh option or vagrant option."
       end
 
-      [config[:host], config[:user], config]
+      [config[:host_name], config[:user], config]
     end
 
     def ssh_config_for_vagrant(name)
