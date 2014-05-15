@@ -1,5 +1,9 @@
 # Infrataster Changelog
 
+## v0.1.7
+
+* Fix a key name in a config passed to Net::SSH.start. (by @rrreeeyyy)
+
 ## v0.1.6
 
 * Implement `Server#ssh\_exec` which executes a command on the server via SSH.
