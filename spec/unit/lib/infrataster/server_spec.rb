@@ -34,7 +34,7 @@ module Infrataster
 
     describe "#ssh_gateway" do
       it "returns gateway instance and proc for finalizing" do
-        server = Server.new('name', 'address', ssh: {host: 'host', user: 'user'})
+        server = Server.new('name', 'address', ssh: {host_name: 'host', user: 'user'})
 
         gateway_mock = double
         expect(gateway_mock).to receive(:shutdown!)
@@ -49,9 +49,9 @@ module Infrataster
       context "with ssh option" do
         context "when options[:ssh][:host] is set" do
           it 'returns args for SSH.start' do
-            server = Server.new('name', 'address', ssh: {host: 'host', user: 'user'})
+            server = Server.new('name', 'address', ssh: {host_name: 'host', user: 'user'})
             expect(server.send(:_ssh_start_args)).
-              to eq(['host', 'user', {host: 'host', user: 'user'}])
+              to eq(['host', 'user', {host_name: 'host', user: 'user'}])
           end
         end
 
@@ -59,7 +59,7 @@ module Infrataster
           it 'returns args for SSH.start' do
             server = Server.new('name', 'address', ssh: {user: 'user'})
             expect(server.send(:_ssh_start_args)).
-              to eq(['address', 'user', {host: 'address', user: 'user'}])
+              to eq(['address', 'user', {host_name: 'address', user: 'user'}])
           end
         end
       end
@@ -69,9 +69,9 @@ module Infrataster
           it 'returns args for SSH.start' do
             server = Server.new('name', 'address', vagrant: true)
             expect(server).to receive(:ssh_config_for_vagrant).with('name').
-              and_return({host: 'host', user: 'user'})
+              and_return({host_name: 'host', user: 'user'})
             expect(server.send(:_ssh_start_args)).
-              to eq(['host', 'user', {host: 'host', user: 'user'}])
+              to eq(['host', 'user', {host_name: 'host', user: 'user'}])
           end
         end
 
@@ -79,9 +79,9 @@ module Infrataster
           it 'returns args for SSH.start' do
             server = Server.new('name', 'address', vagrant: 'vagrant_vm_name')
             expect(server).to receive(:ssh_config_for_vagrant).with('vagrant_vm_name').
-              and_return({host: 'host', user: 'user'})
+              and_return({host_name: 'host', user: 'user'})
             expect(server.send(:_ssh_start_args)).
-              to eq(['host', 'user', {host: 'host', user: 'user'}])
+              to eq(['host', 'user', {host_name: 'host', user: 'user'}])
           end
         end
       end
