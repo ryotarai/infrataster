@@ -45,63 +45,34 @@ module Infrataster
       end
     end
 
-    def ssh_gateway
-      gateway = Net::SSH::Gateway.new(*ssh_start_args)
-      finalize_proc = Proc.new do
-        gateway.shutdown!
-      end
-
-      [gateway, finalize_proc]
-    end
-
-    def with_ssh_gateway
-      gateway, finalize_proc = ssh_gateway
-      yield gateway
-    ensure
-      finalize_proc.call
-    end
-
-    def gateway_open(host, port)
+    def find_available_port
       # find available local port
       server = TCPServer.new('127.0.0.1', 0)
-      local_port = server.addr[1]
+      available_port = server.addr[1]
       server.close
 
-      if block_given?
-        with_ssh_gateway do |gateway|
-          gateway.open(host, port, local_port) do |port|
-            yield port
-          end
-        end
-      else
-        gateway, gateway_finalize_proc = ssh_gateway
-        port = gateway.open(host, port, local_port)
-        finalize_proc = Proc.new do
-          gateway.close(port)
-          gateway_finalize_proc.call
-        end
-        [port, finalize_proc]
+      available_port
+    end
+
+    def gateway
+      @gateway ||= Net::SSH::Gateway.new(*ssh_start_args)
+    end
+
+    def shutdown_gateway
+      if @gateway
+        @gateway.shutdown!
+        @gateway = nil
       end
     end
 
-    def open_gateway_on_from_server(port)
+    def forward_port(port, &block)
+      host, forwarded_port = _forward_port(port)
       if block_given?
-        if from
-          from.gateway_open(@address, port) do |new_port|
-            Logger.debug("tunnel: localhost:#{new_port} -> #{from.address} -> #{@address}:#{port}")
-            yield '127.0.0.1', new_port
-          end
-        else
-          yield @address, port
-        end
+        return_value = block.call(host, forwarded_port)
+        from.gateway.close(forwarded_port) if from
+        return_value
       else
-        if from
-          new_port, finalize_proc = from.gateway_open(@address, port)
-          Logger.debug("tunnel: localhost:#{new_port} -> #{from.address} -> #{@address}:#{port}")
-          ['127.0.0.1', new_port, finalize_proc]
-        else
-          [@address, port, nil]
-        end
+        [host, forwarded_port]
       end
     end
 
@@ -118,6 +89,16 @@ module Infrataster
     end
 
     private
+
+    def _forward_port(port)
+      if from
+        local_port = from.gateway.open(@address, port, find_available_port)
+        ['127.0.0.1', local_port]
+      else
+        # no need to forward port
+        [@address, port]
+      end
+    end
 
     def _ssh_start_args
       config = {}

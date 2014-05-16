@@ -32,19 +32,6 @@ module Infrataster
       end
     end
 
-    describe "#ssh_gateway" do
-      it "returns gateway instance and proc for finalizing" do
-        server = Server.new('name', 'address', ssh: {host_name: 'host', user: 'user'})
-
-        gateway_mock = double
-        expect(gateway_mock).to receive(:shutdown!)
-        expect(Net::SSH::Gateway).to receive(:new).and_return(gateway_mock)
-        gateway, finalize_proc = server.ssh_gateway
-        finalize_proc.call
-        expect(gateway).to eq(gateway_mock)
-      end
-    end
-
     describe "#_ssh_start_args" do
       context "with ssh option" do
         context "when options[:ssh][:host] is set" do

@@ -13,5 +13,11 @@ RSpec.configure do |config|
   config.after(:each) do
     @infrataster_context.after_each(example) if @infrataster_context.respond_to?(:after_each)
   end
+
+  config.after(:all) do
+    Infrataster::Server.defined_servers.each do |server|
+      server.shutdown_gateway
+    end
+  end
 end
 
