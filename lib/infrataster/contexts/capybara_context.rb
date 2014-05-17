@@ -12,11 +12,9 @@ module Infrataster
       end
 
       def self.prepare_session
-        proxy = BrowsermobProxy.proxy
         Capybara.register_driver CAPYBARA_DRIVER_NAME do |app|
           Capybara::Poltergeist::Driver.new(
             app,
-            phantomjs_options: ["--proxy=http://#{proxy.host}:#{proxy.port}"],
           )
         end
         Capybara::Session.new(CAPYBARA_DRIVER_NAME)
@@ -37,8 +35,7 @@ module Infrataster
       def before_each(example)
         example.example_group_instance.extend(Capybara::RSpecMatchers)
 
-        proxy = BrowsermobProxy.proxy
-        proxy.header({"Host" => resource.uri.host})
+        session.driver.headers = {"Host" => resource.uri.host}
 
         address, port = server.forward_port(resource.uri.port)
         Capybara.app_host = "http://#{address}:#{port}"

@@ -20,8 +20,6 @@ Infrataster::Server.define(
   mysql: {user: 'app', password: 'app'}
 )
 
-Infrataster::BrowsermobProxy.bin_path = File.expand_path('../../../vendor/browsermob-proxy/bin/browsermob-proxy', __FILE__)
-
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
