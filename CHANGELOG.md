@@ -1,5 +1,9 @@
 # Infrataster Changelog
 
+## v0.1.8
+
+* Use Poltergeist's header manipulation instead of BrowserMob Proxy. Remove BrowserMob Proxy dependency.
+
 ## v0.1.7
 
 * Fix a key name in a config passed to Net::SSH.start. (by @rrreeeyyy)
