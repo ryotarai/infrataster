@@ -5,20 +5,15 @@ module Infrataster
     module ResourceHelper
       include RSpec::Matchers
 
-      def server(*args)
-        Resources::ServerResource.new(*args)
-      end
 
-      def http(*args)
-        Resources::HttpResource.new(*args)
-      end
-
-      def mysql_query(*args)
-        Resources::MysqlQueryResource.new(*args)
-      end
-
-      def capybara(*args)
-        Resources::CapybaraResource.new(*args)
+      def method_missing(method, *args)
+        resource_class_name = method.to_s.split('_').map {|word| word.capitalize }.join
+        resource_class_name << 'Resource'
+        begin
+          Resources.const_get(resource_class_name).new(*args)
+        rescue
+          super(method, *args)
+        end
       end
     end
   end

@@ -3,6 +3,7 @@ require 'infrataster/contexts/base_context'
 require 'infrataster/contexts/no_resource_context'
 require 'infrataster/contexts/http_context'
 require 'infrataster/contexts/capybara_context'
+require 'infrataster/contexts/tcp_port_context'
 
 module Infrataster
   module Contexts
