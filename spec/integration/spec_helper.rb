@@ -12,8 +12,6 @@ Infrataster::Server.define(
   from: :proxy,
 )
 
-Infrataster::BrowsermobProxy.bin_path = File.expand_path('../vm/vendor/browsermob/bin/browsermob-proxy', __FILE__)
-
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true

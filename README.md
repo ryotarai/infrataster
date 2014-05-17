@@ -219,15 +219,6 @@ describe server(:app) do
 end
 ```
 
-If you use `capybara`, you should download and extract [BrowserMob Proxy](http://bmp.lightbody.net/) and set `Infrataster::BrowsermobProxy.bin_path` to binary path in `spec/spec_helper.rb`:
-
-```ruby
-# spec/spec_helper.rb
-Infrataster::BrowsermobProxy.bin_path = '/path/to/browsermob/bin/browsermob'
-```
-
-(BrowserMob Proxy is needed to manipulate Host HTTP header.)
-
 ### `mysql_query` resource
 
 `mysql_query` resource is now in [infrataster-plugin-mysql](https://github.com/ryotarai/infrataster-plugin-mysql).
