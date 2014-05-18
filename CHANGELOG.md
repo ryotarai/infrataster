@@ -1,5 +1,9 @@
 # Infrataster Changelog
 
+## v0.1.9
+
+* Add "fuzzy IP address" feature which determine IP address by CIDR or netmask.
+
 ## v0.1.8
 
 * Use Poltergeist's header manipulation instead of BrowserMob Proxy. Remove BrowserMob Proxy dependency.
