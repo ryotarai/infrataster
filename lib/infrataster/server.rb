@@ -36,7 +36,8 @@ module Infrataster
     attr_reader :name, :address, :options
 
     def initialize(name, address, options = {})
-      @name, @address, @options = name, address, options
+      @name, @options = name, options
+      @address = determine_address(address)
     end
 
     def from
@@ -133,6 +134,44 @@ module Infrataster
       end
 
       config
+    end
+
+    def fetch_all_addresses
+      result = []
+      ssh_exec('ip addr').each_line do |line|
+        #inet 10.0.2.15/24 brd 10.0.2.255 scope global eth0
+        if %r{inet ([^/]+)} =~ line
+          result << $1
+        end
+      end
+
+      result
+    end
+
+    def determine_address(address)
+      Logger.debug("Determining ip address...")
+
+      ipaddr = IPAddr.new(address)
+      if ipaddr.to_range.begin == ipaddr.to_range.end
+        # subnet mask is 255.255.255.255
+        return ipaddr.to_s
+      end
+
+      all_addresses = fetch_all_addresses
+      Logger.debug(all_addresses)
+
+      matched = all_addresses.select do |a|
+        ipaddr.include?(a)
+      end
+      Logger.debug(matched)
+
+      if matched.empty?
+        raise Error, "No IP address matching #{ipaddr} is not found."
+      elsif matched.size > 1
+        raise Error, "Multiple IP addresses matching #{ipaddr} are found."
+      end
+
+      matched.first
     end
   end
 end

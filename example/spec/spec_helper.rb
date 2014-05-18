@@ -3,18 +3,18 @@ require 'infrataster-plugin-mysql'
 
 Infrataster::Server.define(
   :proxy,
-  '192.168.33.10',
+  '192.168.0.0/16',
   vagrant: true,
 )
 Infrataster::Server.define(
   :app,
-  '172.16.33.11',
+  '172.16.0.0/16',
   vagrant: true,
   from: :proxy
 )
 Infrataster::Server.define(
   :db,
-  '172.16.33.12',
+  '172.16.0.0/16',
   vagrant: true,
   from: :app,
   mysql: {user: 'app', password: 'app'}

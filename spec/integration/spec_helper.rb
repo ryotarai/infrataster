@@ -2,12 +2,12 @@ require 'infrataster/rspec'
 
 Infrataster::Server.define(
   :proxy,
-  '192.168.44.10',
+  '192.168.0.0/16',
   vagrant: true,
 )
 Infrataster::Server.define(
   :app,
-  '172.16.44.11',
+  '172.16.0.0/16',
   vagrant: true,
   from: :proxy,
 )
