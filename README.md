@@ -143,7 +143,7 @@ You can specify SSH configuration manually too:
 ```ruby
 Infrataster::Server.define(
   # ...
-  ssh: {host: 'hostname', user: 'testuser', keys: ['/path/to/id_rsa']}
+  ssh: {host_name: 'hostname', user: 'testuser', keys: ['/path/to/id_rsa']}
 )
 ```
 
