@@ -1,5 +1,9 @@
 # Infrataster Changelog
 
+## v0.1.10
+
+* rspec ~> 2.0
+
 ## v0.1.9
 
 * Add "fuzzy IP address" feature which determine IP address by CIDR or netmask.
