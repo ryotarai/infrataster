@@ -6,9 +6,6 @@
 
 Infrastructure Behavior Testing Framework.
 
-<a href="https://speakerdeck.com/ryotarai/introducing-infrataster">
-<img src="http://i.gyazo.com/305b8b041acd3569268ece4e07e2517a.png" alt="Introducing Infrataster" width="300px">
-</a>
 
 ## Basic Usage with Vagrant
 
@@ -273,6 +270,12 @@ $ bundle exec rake spec:integration
 ```
 
 ## Presentations
+
+* https://speakerdeck.com/ryotarai/introducing-infrataster
+
+<a href="https://speakerdeck.com/ryotarai/introducing-infrataster">
+<img src="http://i.gyazo.com/305b8b041acd3569268ece4e07e2517a.png" alt="Introducing Infrataster" width="300px">
+</a>
 
 * https://speakerdeck.com/ryotarai/infrataster-infra-behavior-testing-framework-number-oedo04
 
