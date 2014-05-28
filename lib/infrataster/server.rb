@@ -138,7 +138,7 @@ module Infrataster
 
     def fetch_all_addresses
       result = []
-      ssh_exec('ip addr').each_line do |line|
+      ssh_exec('PATH="/sbin:$PATH" ip addr').each_line do |line|
         #inet 10.0.2.15/24 brd 10.0.2.255 scope global eth0
         if %r{inet ([^/]+)} =~ line
           result << $1
