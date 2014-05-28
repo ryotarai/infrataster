@@ -6,6 +6,10 @@
 
 Infrastructure Behavior Testing Framework.
 
+<a href="https://speakerdeck.com/ryotarai/introducing-infrataster">
+<img src="http://i.gyazo.com/305b8b041acd3569268ece4e07e2517a.png" alt="Introducing Infrataster" style="width: 100px">
+</a>
+
 ## Basic Usage with Vagrant
 
 First, create `Gemfile`:
