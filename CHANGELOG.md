@@ -18,7 +18,7 @@
 
 ## v0.1.6
 
-* Implement `Server#ssh\_exec` which executes a command on the server via SSH.
+* Implement `Server#ssh_exec` which executes a command on the server via SSH.
 
 ## v0.1.5
 
