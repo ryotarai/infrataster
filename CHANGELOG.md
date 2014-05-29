@@ -1,4 +1,7 @@
 # Infrataster Changelog
+## v0.1.11
+
+* Slight bug fixes
 
 ## v0.1.10
 
