@@ -117,7 +117,7 @@
       <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">'Hello Sinatra'</span><span class="p">)</span>
     <span class="k">end</span>
     <span class="n">it</span> <span class="s2">"responds as 'text/html'"</span> <span class="k">do</span>
-      <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">[</span><span class="s1">'content-type'</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">match</span><span class="p">(</span><span class="sr">%r{^text/html}</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">[</span><span class="s1">'content-type'</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"text/html"</span><span class="p">)</span>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
@@ -301,6 +301,11 @@ $ bundle exec rake spec:integration
 
 <h2>
 <a name="presentations" class="anchor" href="#presentations"><span class="octicon octicon-link"></span></a>Presentations</h2>
+
+<ul>
+<li><a href="https://speakerdeck.com/ryotarai/introducing-infrataster">https://speakerdeck.com/ryotarai/introducing-infrataster</a></li>
+</ul><p><a href="https://speakerdeck.com/ryotarai/introducing-infrataster">
+<img src="http://i.gyazo.com/305b8b041acd3569268ece4e07e2517a.png" alt="Introducing Infrataster" width="300px"></a></p>
 
 <ul>
 <li><a href="https://speakerdeck.com/ryotarai/infrataster-infra-behavior-testing-framework-number-oedo04">https://speakerdeck.com/ryotarai/infrataster-infra-behavior-testing-framework-number-oedo04</a></li>
