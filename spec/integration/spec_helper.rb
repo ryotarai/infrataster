@@ -10,6 +10,7 @@ Infrataster::Server.define(
   '172.16.0.0/16',
   vagrant: true,
   from: :proxy,
+  http: {host: 'example.com'},
 )
 
 RSpec.configure do |config|
