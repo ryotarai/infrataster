@@ -85,7 +85,7 @@ module Infrataster
 
     def ssh_exec(cmd, &block)
       result = nil
-      Net::SSH.start(*ssh_start_args) do |ssh|
+      ssh do |ssh|
         result = ssh.exec!(cmd, &block)
       end
       result
