@@ -15,5 +15,11 @@ describe server(:proxy) do
     result = current_server.ssh_exec("cat /tmp/test-#{time.to_i}")
     expect(result.chomp).to eq('Hello')
   end
+  it "connects to the current server via SSH" do
+    current_server.ssh do |ssh|
+      expect(ssh.exec!('echo -n Hello')).to eq('Hello')
+    end
+  end
+
 end
 
