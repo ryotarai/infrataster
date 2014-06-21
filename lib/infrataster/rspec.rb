@@ -6,6 +6,9 @@ include Infrataster::Helpers::ResourceHelper
 RSpec.configure do |config|
   config.include Infrataster::Helpers::RSpecHelper
 
+  config.before(:all) do
+    @infrataster_context = Infrataster::Contexts.from_example(self.class)
+  end
   config.before(:each) do
     @infrataster_context = Infrataster::Contexts.from_example(example)
     @infrataster_context.before_each(example) if @infrataster_context.respond_to?(:before_each)
