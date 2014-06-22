@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'infrataster/cli'
+
+Infrataster::CLI.start(ARGV)
+
