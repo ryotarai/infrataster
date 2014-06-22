@@ -51,6 +51,12 @@ describe server(:app) do
       expect(body_as_json['headers']['USER']).to eq('VALUE')
     end
   end
+
+  describe http('/path/to/resource') do
+    it "sends GET request with scheme and host" do
+      expect(body_as_json['headers']['HOST']).to eq('example.com')
+    end
+  end
 end
 
 
