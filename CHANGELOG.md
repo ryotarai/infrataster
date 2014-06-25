@@ -1,4 +1,10 @@
 # Infrataster Changelog
+## v0.1.12
+
+* Add infrataster command to create template directory.
+* Specify host in a option passed to Server.define. (by @KitaitiMakoto)
+* Add Server#ssh method. (by @KitaitiMakoto)
+
 ## v0.1.11
 
 * Slight bug fixes
