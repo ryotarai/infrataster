@@ -17,13 +17,17 @@ module Infrataster
             resource.params.each_pair do |k, v|
               req.params[k] = v
             end
-            req.headers['Host'] = resource.uri.host
+            req.headers['Host'] = determine_host(address)
             resource.headers.each_pair do |k, v|
               req.headers[k] = v
             end
             req.url resource.uri.path
           end
         end
+      end
+
+      def determine_host(default)
+        resource.uri.host || (server.options[:http] && server.options[:http][:host]) || default
       end
     end
   end

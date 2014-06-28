@@ -11,8 +11,12 @@ module Infrataster
       def initialize(url_str, options = {})
         @options = {params: {}, method: :get, headers: {}}.merge(options)
         @uri = URI.parse(url_str)
-        unless %w!http https!.include?(@uri.scheme)
-          raise Error, "The provided url, '#{@uri}', is not http or https."
+        if @uri.scheme
+          unless %w!http https!.include?(@uri.scheme)
+            raise Error, "The provided url, '#{@uri}', is not http or https."
+          end
+        else
+          @uri = URI::HTTP.build([@uri.userinfo, @uri.host, @uri.port, @uri.path, @uri.query, @uri.fragment])
         end
       end
 
