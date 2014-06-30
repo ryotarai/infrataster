@@ -9,7 +9,8 @@ end
 describe server(:proxy) do
   let(:time) { Time.now }
   before :all do
-    current_server.ssh_exec "echo 'Hello once' > /tmp/test-once-#{time.to_i}"
+    @before_all_time = Time.now
+    current_server.ssh_exec "echo 'Hello once' > /tmp/test-once-#{@before_all_time.to_i}"
   end
   before do
     current_server.ssh_exec "echo 'Hello' > /tmp/test-#{time.to_i}"
@@ -24,7 +25,7 @@ describe server(:proxy) do
     end
   end
   it "executes a command on the current server in before all block" do
-    result = current_server.ssh_exec("cat /tmp/test-once-#{time.to_i}")
+    result = current_server.ssh_exec("cat /tmp/test-once-#{@before_all_time.to_i}")
     expect(result.chomp).to eq('Hello once')
   end
 
