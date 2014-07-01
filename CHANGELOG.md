@@ -1,4 +1,8 @@
 # Infrataster Changelog
+## v0.1.13
+
+* Make Infrataster's methods available in before(:all) block. (by @KitaitiMakoto)
+
 ## v0.1.12
 
 * Add infrataster command to create template directory.
