@@ -10,7 +10,7 @@ RSpec.configure do |config|
     @infrataster_context = Infrataster::Contexts.from_example(self.class)
   end
   config.before(:each) do
-    @infrataster_context = Infrataster::Contexts.from_example(example)
+    @infrataster_context = Infrataster::Contexts.from_example(RSpec.current_example)
     @infrataster_context.before_each(example) if @infrataster_context.respond_to?(:before_each)
   end
   config.after(:each) do
