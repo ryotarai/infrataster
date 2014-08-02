@@ -9,11 +9,19 @@ RSpec.configure do |config|
   config.before(:all) do
     @infrataster_context = Infrataster::Contexts.from_example(self.class)
   end
+
   config.before(:each) do
-    @infrataster_context = Infrataster::Contexts.from_example(RSpec.current_example)
+    if defined?(RSpec.current_example)
+      example = RSpec.current_example
+    end
+    @infrataster_context = Infrataster::Contexts.from_example(example)
     @infrataster_context.before_each(example) if @infrataster_context.respond_to?(:before_each)
   end
+
   config.after(:each) do
+    if defined?(RSpec.current_example)
+      example = RSpec.current_example
+    end
     @infrataster_context.after_each(example) if @infrataster_context.respond_to?(:after_each)
   end
 
