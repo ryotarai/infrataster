@@ -1,4 +1,10 @@
 # Infrataster Changelog
+## v0.2.0.beta1
+
+* Support RSpec 3.x
+  * Some deprecation warnings remain.
+  * RSpec 2.x is supported too.
+
 ## v0.1.13
 
 * Make Infrataster's methods available in before(:all) block. (by @KitaitiMakoto)
