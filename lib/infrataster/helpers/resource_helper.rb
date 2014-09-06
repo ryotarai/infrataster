@@ -4,7 +4,9 @@ require 'infrataster/resources'
 module Infrataster
   module Helpers
     module ResourceHelper
-      include RSpec::Matchers
+      if RSpec::Version::STRING.start_with?('2.')
+        include RSpec::Matchers
+      end
 
       def server(*args)
         Resources::ServerResource.new(*args)
