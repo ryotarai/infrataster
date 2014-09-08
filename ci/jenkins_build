@@ -11,7 +11,8 @@ def exec(cmd, exit_if_fail = true)
   $?.exitstatus
 end
 
-exec('env USE_SYSTEM_GECODE=1 bundle install --path=vendor/bundle --jobs=4')
+exec 'rm -f Gemfile.lock'
+exec 'env USE_SYSTEM_GECODE=1 bundle install --path=vendor/bundle --jobs=4'
 
 exec 'bundle exec rake spec:unit'
 
