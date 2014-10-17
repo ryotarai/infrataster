@@ -2,7 +2,6 @@
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/ryotarai/infrataster?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Gem Version](https://badge.fury.io/rb/infrataster.png)](http://badge.fury.io/rb/infrataster)
-[![Build Status](http://ci.ryotarai.info/buildStatus/icon?job=infrataster)](http://ci.ryotarai.info/job/infrataster/)
 [![Code Climate](https://codeclimate.com/github/ryotarai/infrataster.png)](https://codeclimate.com/github/ryotarai/infrataster)
 
 Infrastructure Behavior Testing Framework.
