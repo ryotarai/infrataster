@@ -14,7 +14,7 @@ desc 'Run tests'
 task :spec => ['spec:integration']
 
 namespace :spec do
-  RSpec::Core::RakeTask.new("infrataster") do |task|
+  RSpec::Core::RakeTask.new("integration") do |task|
     task.pattern = "./spec/{,/*/**}/*_spec.rb"
   end
 
