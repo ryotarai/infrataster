@@ -245,6 +245,12 @@ end
 
 `mysql_query` resource is now in [infrataster-plugin-mysql](https://github.com/ryotarai/infrataster-plugin-mysql).
 
+### `pgsql_query` resource
+
+`pgsql_query` resource sends a query to PostgreSQL server.
+
+`pgsql_query` is provided by [infrataster-plugin-pgsql](https://github.com/SnehaM/infrataster-plugin-pgsql) by [@SnehaM](https://github.com/SnehaM).
+
 ## Example
 
 * [example](example)
