@@ -40,6 +40,10 @@ module Infrataster
       def headers
         @options[:headers]
       end
+	  
+      def ssl_option
+        @options[:ssl]
+      end
     end
   end
 end
