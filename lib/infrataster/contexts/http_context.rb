@@ -6,8 +6,13 @@ module Infrataster
       def response
         server.forward_port(resource.uri.port) do |address, port|
           url = "#{resource.uri.scheme}://#{address}:#{port}"
-
-          conn = Faraday.new(:url => url) do |faraday|
+          options = {:url => url}
+          
+          if resource.uri.scheme == 'https'
+            options[:ssl] = resource.ssl_option
+          end
+          
+          conn = Faraday.new(options) do |faraday|
             faraday.request  :url_encoded
             faraday.response :logger, Logger
             faraday.adapter  Faraday.default_adapter
