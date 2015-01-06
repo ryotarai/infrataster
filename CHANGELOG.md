@@ -1,4 +1,13 @@
 # Infrataster Changelog
+
+## v0.2.1
+
+* `http` resource support `ssl` option which is passed to Faraday.new (by @SnehaM)
+
+## v0.2.0
+
+* No change
+
 ## v0.2.0.beta1
 
 * Support RSpec 3.x
