@@ -11,6 +11,23 @@ module Infrataster
         expect(servers[0].address).to eq('127.0.0.1')
         expect(servers[0].options).to eq({})
       end
+      it "adds a Server instance to defined_servers with block" do
+        described_class.define(:app) do |server|
+          server.address = '127.0.0.1'
+          server.vagrant = true
+          server.from = :proxy
+        end
+        described_class.define(:proxy) do |server|
+          server.address = '127.0.0.1'
+          server.vagrant = true
+        end
+        servers = described_class.defined_servers
+        expect(servers.size).to eq(2)
+        expect(servers[0].name).to eq(:app)
+        expect(servers[0].address).to eq('127.0.0.1')
+        expect(servers[0].options[:vagrant]).to eq(true)
+        expect(servers[0].from).to eq(servers[1])
+      end
     end
 
     describe "self.find_by_name" do

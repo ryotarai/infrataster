@@ -10,8 +10,16 @@ module Infrataster
 
     class << self
 
-      def define(*args)
-        @@servers << Server.new(*args)
+      def define(name, *args, &block)
+        address = args.shift
+        options = args.any? ? args.shift : {}
+        if block
+          st = OpenStruct.new
+          block.call(st)
+          address = st.address if st.address
+          st.each_pair { |k, v| options[k] = v unless k == :address }
+        end
+        @@servers << Server.new(name, address, options)
       end
 
       def defined_servers
