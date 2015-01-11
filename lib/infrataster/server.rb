@@ -3,6 +3,7 @@ require 'net/ssh'
 require 'net/ssh/gateway'
 require 'ipaddr'
 require 'shellwords'
+require 'ostruct'
 
 module Infrataster
   class Server
