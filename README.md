@@ -251,6 +251,12 @@ end
 
 `pgsql_query` is provided by [infrataster-plugin-pgsql](https://github.com/SnehaM/infrataster-plugin-pgsql) by [@SnehaM](https://github.com/SnehaM).
 
+### `dns` resource
+
+`dns` resource send query to DNS server.
+
+`dns` is provided by [infrataster-plugin-dns](https://github.com/otahi/infrataster-plugin-dns) by [@otahi](https://github.com/otahi).
+
 ## Example
 
 * [example](example)
