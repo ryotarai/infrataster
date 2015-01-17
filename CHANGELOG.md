@@ -1,5 +1,9 @@
 # Infrataster Changelog
 
+## v0.2.2
+
+* Server can be defined by block. (https://github.com/ryotarai/infrataster/pull/51 by @otahi)
+
 ## v0.2.1
 
 * `http` resource support `ssl` option which is passed to Faraday.new (by @SnehaM)
