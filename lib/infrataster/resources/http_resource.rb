@@ -44,6 +44,10 @@ module Infrataster
       def ssl_option
         @options[:ssl]
       end
+
+      def basic_auth
+        @options[:basic_auth]
+      end
     end
   end
 end
