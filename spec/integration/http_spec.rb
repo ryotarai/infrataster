@@ -22,6 +22,19 @@ describe server(:proxy) do
       expect(response.headers['content-encoding']).to eq('gzip')
     end
   end
+
+  describe http('http://static.example.com/auth') do
+    it "sends GET request without basic auth" do
+      expect(response.status).to eq 401
+    end
+  end
+
+  describe http('http://static.example.com/auth', basic_auth: ['dummy', 'dummy']) do
+    it "sends GET request with basic auth" do
+      expect(response.status).to eq 200
+      expect(response.body).to include('auth')
+    end
+  end
 end
 
 describe server(:app) do
