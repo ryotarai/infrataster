@@ -16,6 +16,7 @@ module Infrataster
             faraday.request  :url_encoded
             faraday.response :logger, Logger
             faraday.adapter  Faraday.default_adapter
+            faraday.basic_auth(*resource.basic_auth) if resource.basic_auth
           end
 
           conn.public_send(resource.method) do |req|

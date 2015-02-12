@@ -20,3 +20,10 @@ cookbook_file '/usr/share/nginx/www/index.html' do
   mode '0644'
 end
 
+cookbook_file '/usr/share/nginx/www/auth' do
+  mode '0644'
+end
+
+cookbook_file '/etc/nginx/.htpasswd' do
+  mode '0644'
+end

@@ -12,6 +12,11 @@ server {
 	location / {
 		try_files $uri $uri/ /index.html;
 	}
+
+	location = /auth {
+		auth_basic "Restricted";
+		auth_basic_user_file /etc/nginx/.htpasswd;
+	}
 }
 
 server {
