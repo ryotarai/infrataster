@@ -1,5 +1,9 @@
 # Infrataster Changelog
 
+## v0.2.3
+
+* [http resource supports basic auth. (by @winebarrel)](https://github.com/ryotarai/infrataster/pull/54)
+
 ## v0.2.2
 
 * Server can be defined by block. (https://github.com/ryotarai/infrataster/pull/51 by @otahi)
