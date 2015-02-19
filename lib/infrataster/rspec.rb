@@ -6,23 +6,23 @@ include Infrataster::Helpers::ResourceHelper
 RSpec.configure do |config|
   config.include Infrataster::Helpers::RSpecHelper
 
+  fetch_current_example = RSpec.respond_to?(:current_example) ?
+                            proc { RSpec.current_example }
+                          : proc { |context| context.example }
+
   config.before(:all) do
     @infrataster_context = Infrataster::Contexts.from_example(self.class)
   end
 
   config.before(:each) do
-    if defined?(RSpec.current_example)
-      example = RSpec.current_example
-    end
-    @infrataster_context = Infrataster::Contexts.from_example(example)
-    @infrataster_context.before_each(example) if @infrataster_context.respond_to?(:before_each)
+    current_example = fetch_current_example.call(self)
+    @infrataster_context = Infrataster::Contexts.from_example(current_example)
+    @infrataster_context.before_each(current_example) if @infrataster_context.respond_to?(:before_each)
   end
 
   config.after(:each) do
-    if defined?(RSpec.current_example)
-      example = RSpec.current_example
-    end
-    @infrataster_context.after_each(example) if @infrataster_context.respond_to?(:after_each)
+    current_example = fetch_current_example.call(self)
+    @infrataster_context.after_each(current_example) if @infrataster_context.respond_to?(:after_each)
   end
 
   config.after(:all) do
@@ -31,4 +31,3 @@ RSpec.configure do |config|
     end
   end
 end
-
