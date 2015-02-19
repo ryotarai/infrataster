@@ -65,6 +65,24 @@ describe server(:app) do
     end
   end
 
+  describe http('http://app.example.com', method: :post, body: {'foo' => 'bar'}, headers: {'USER' => 'VALUE'}) do
+    it "sends POST request with body entity" do
+      expect(body_as_json['method']).to eq('POST')
+      expect(body_as_json['body']).to eq("foo=bar")
+      expect(body_as_json['headers']['USER']).not_to be_empty
+      expect(body_as_json['headers']['USER']).to eq('VALUE')
+    end
+  end
+
+  describe http('http://app.example.com', method: :post, body: {'foo' => 'bar'}.to_json, headers: {'USER' => 'VALUE'}) do
+    it "sends POST request with body entity as JSON format" do
+      expect(body_as_json['method']).to eq('POST')
+      expect(body_as_json['body']).to eq({"foo" => "bar"}.to_json)
+      expect(body_as_json['headers']['USER']).not_to be_empty
+      expect(body_as_json['headers']['USER']).to eq('VALUE')
+    end
+  end
+
   describe http('/path/to/resource') do
     it "sends GET request with scheme and host" do
       expect(body_as_json['headers']['HOST']).to eq('example.com')
