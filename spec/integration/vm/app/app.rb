@@ -19,6 +19,7 @@ def result
     'method' => request.request_method,
     'path' => request.path_info,
     'params' => params,
+    'body' => request.body.read,
     'headers' => RequestWrapper.new(request).headers,
   }
 end

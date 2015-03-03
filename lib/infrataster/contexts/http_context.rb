@@ -27,6 +27,9 @@ module Infrataster
             resource.headers.each_pair do |k, v|
               req.headers[k] = v
             end
+
+            req.body = resource.body if resource.body
+
             req.url resource.uri.path
           end
         end
