@@ -1,5 +1,9 @@
 # Infrataster Changelog
 
+## v0.2.5
+
+* [body option of http resource](https://github.com/ryotarai/infrataster/pull/57)
+
 ## v0.2.4
 
 * [Consider how to fetch the current example in RSpec v2.14.x (by @gongo)](https://github.com/ryotarai/infrataster/pull/56)
