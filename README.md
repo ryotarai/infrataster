@@ -281,6 +281,12 @@ end
 
 `memcached` is provided by [infrataster-plugin-memecached](https://github.com/rahulkhengare/infrataster-plugin-memcached) by [@rahulkhengare](https://github.com/rahulkhengare).
 
+### `redis` resource
+
+`redis` resource sends a query to redis server.
+
+`redis` is provided by [infrataster-plugin-redis](https://github.com/rahulkhengare/infrataster-plugin-redis) by [@rahulkhengare](https://github.com/rahulkhengare).
+
 ## Example
 
 * [example](example)
