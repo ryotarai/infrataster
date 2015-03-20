@@ -47,6 +47,7 @@ module Infrataster
     def initialize(name, address, options = {})
       @name, @options = name, options
       @address = determine_address(address)
+      @gateway = nil
     end
 
     def from
