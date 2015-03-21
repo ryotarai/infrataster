@@ -1,2 +1,2 @@
-name 'proxy'
+name 'db'
 depends 'apt'

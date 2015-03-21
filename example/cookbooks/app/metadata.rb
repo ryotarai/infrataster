@@ -1,2 +1,2 @@
-name 'proxy'
+name 'app'
 depends 'apt'
