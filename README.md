@@ -175,6 +175,7 @@ Infrataster::Server.define(
   :app,
   # find IP address matching 172.16.0.0 ~ 172.16.255.255
   '172.16.0.0/16',
+)
 ```
 
 Of course, you can set fully-specified IP address too.
@@ -185,6 +186,7 @@ Infrataster::Server.define(
   '172.16.11.22',
   # or
   '172.16.11.22/32',
+)
 ```
 
 ### #ssh_exec
