@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Infrataster : Infrastructure Acceptance Testing Framework">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Infrataster</title>
+    <meta charset="UTF-8">
+    <title>Infrataster by ryotarai</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Infrataster</h1>
+      <h2 class="project-tagline">Infrastructure Acceptance Testing Framework</h2>
+      <a href="https://github.com/ryotarai/infrataster" class="btn">View on GitHub</a>
+      <a href="https://github.com/ryotarai/infrataster/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/ryotarai/infrataster/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/ryotarai/infrataster">View on GitHub</a>
-
-          <h1 id="project_title">Infrataster</h1>
-          <h2 id="project_tagline">Infrastructure Acceptance Testing Framework</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/ryotarai/infrataster/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/ryotarai/infrataster/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="infrataster" class="anchor" href="#infrataster" aria-hidden="true"><span class="octicon octicon-link"></span></a>Infrataster</h1>
 
 <p><a href="https://gitter.im/ryotarai/infrataster?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a></p>
@@ -46,9 +34,9 @@
 
 <p>First, create <code>Gemfile</code>:</p>
 
-<div class="highlight highlight-ruby"><pre>source <span class="pl-s1"><span class="pl-pds">'</span>https://rubygems.org<span class="pl-pds">'</span></span>
+<div class="highlight highlight-ruby"><pre>source <span class="pl-s"><span class="pl-pds">'</span>https://rubygems.org<span class="pl-pds">'</span></span>
 
-<span class="pl-k">gem</span> <span class="pl-s1"><span class="pl-pds">'</span>infrataster<span class="pl-pds">'</span></span></pre></div>
+<span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>infrataster<span class="pl-pds">'</span></span></pre></div>
 
 <p>Install gems:</p>
 
@@ -60,16 +48,16 @@
 <p>Create Vagrantfile:</p>
 
 <div class="highlight highlight-ruby"><pre><span class="pl-c"># Vagrantfile</span>
-<span class="pl-s3">Vagrant</span>.configure(<span class="pl-s1"><span class="pl-pds">"</span>2<span class="pl-pds">"</span></span>) <span class="pl-k">do </span>|<span class="pl-vo">config</span>|
-  config.vm.box <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>hashicorp/precise64<span class="pl-pds">"</span></span>
+<span class="pl-c1">Vagrant</span>.configure(<span class="pl-s"><span class="pl-pds">"</span>2<span class="pl-pds">"</span></span>) <span class="pl-k">do </span>|<span class="pl-smi">config</span>|
+  config.vm.box <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>hashicorp/precise64<span class="pl-pds">"</span></span>
 
-  config.vm.define <span class="pl-c1">:proxy</span> <span class="pl-k">do </span>|<span class="pl-vo">c</span>|
-    c.vm.network <span class="pl-s1"><span class="pl-pds">"</span>private_network<span class="pl-pds">"</span></span>, <span class="pl-c1">ip:</span> <span class="pl-s1"><span class="pl-pds">"</span>192.168.33.10<span class="pl-pds">"</span></span>
-    c.vm.network <span class="pl-s1"><span class="pl-pds">"</span>private_network<span class="pl-pds">"</span></span>, <span class="pl-c1">ip:</span> <span class="pl-s1"><span class="pl-pds">"</span>171.16.33.10<span class="pl-pds">"</span></span>, <span class="pl-c1">virtualbox__intnet:</span> <span class="pl-s1"><span class="pl-pds">"</span>infrataster-example<span class="pl-pds">"</span></span>
+  config.vm.define <span class="pl-c1">:proxy</span> <span class="pl-k">do </span>|<span class="pl-smi">c</span>|
+    c.vm.network <span class="pl-s"><span class="pl-pds">"</span>private_network<span class="pl-pds">"</span></span>, <span class="pl-c1">ip:</span> <span class="pl-s"><span class="pl-pds">"</span>192.168.33.10<span class="pl-pds">"</span></span>
+    c.vm.network <span class="pl-s"><span class="pl-pds">"</span>private_network<span class="pl-pds">"</span></span>, <span class="pl-c1">ip:</span> <span class="pl-s"><span class="pl-pds">"</span>171.16.33.10<span class="pl-pds">"</span></span>, <span class="pl-c1">virtualbox__intnet:</span> <span class="pl-s"><span class="pl-pds">"</span>infrataster-example<span class="pl-pds">"</span></span>
   <span class="pl-k">end</span>
 
-  config.vm.define <span class="pl-c1">:app</span> <span class="pl-k">do </span>|<span class="pl-vo">c</span>|
-    c.vm.network <span class="pl-s1"><span class="pl-pds">"</span>private_network<span class="pl-pds">"</span></span>, <span class="pl-c1">ip:</span> <span class="pl-s1"><span class="pl-pds">"</span>171.16.33.11<span class="pl-pds">"</span></span>, <span class="pl-c1">virtualbox__intnet:</span> <span class="pl-s1"><span class="pl-pds">"</span>infrataster-example<span class="pl-pds">"</span></span>
+  config.vm.define <span class="pl-c1">:app</span> <span class="pl-k">do </span>|<span class="pl-smi">c</span>|
+    c.vm.network <span class="pl-s"><span class="pl-pds">"</span>private_network<span class="pl-pds">"</span></span>, <span class="pl-c1">ip:</span> <span class="pl-s"><span class="pl-pds">"</span>171.16.33.11<span class="pl-pds">"</span></span>, <span class="pl-c1">virtualbox__intnet:</span> <span class="pl-s"><span class="pl-pds">"</span>infrataster-example<span class="pl-pds">"</span></span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -88,16 +76,16 @@
 <p><code>require 'infrataster/rspec'</code> and define target servers for testing in <code>spec/spec_helper.rb</code>:</p>
 
 <div class="highlight highlight-ruby"><pre><span class="pl-c"># spec/spec_helper.rb</span>
-<span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>infrataster/rspec<span class="pl-pds">'</span></span>
+<span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>infrataster/rspec<span class="pl-pds">'</span></span>
 
-<span class="pl-s3">Infrataster</span>::<span class="pl-s3">Server</span>.define(
+<span class="pl-c1">Infrataster</span>::<span class="pl-c1">Server</span>.define(
   <span class="pl-c1">:proxy</span>,           <span class="pl-c"># name</span>
-  <span class="pl-s1"><span class="pl-pds">'</span>192.168.0.0/16<span class="pl-pds">'</span></span>, <span class="pl-c"># ip address</span>
+  <span class="pl-s"><span class="pl-pds">'</span>192.168.0.0/16<span class="pl-pds">'</span></span>, <span class="pl-c"># ip address</span>
   <span class="pl-c1">vagrant:</span> <span class="pl-c1">true</span>     <span class="pl-c"># for vagrant VM</span>
 )
-<span class="pl-s3">Infrataster</span>::<span class="pl-s3">Server</span>.define(
+<span class="pl-c1">Infrataster</span>::<span class="pl-c1">Server</span>.define(
   <span class="pl-c1">:app</span>,             <span class="pl-c"># name</span>
-  <span class="pl-s1"><span class="pl-pds">'</span>172.16.0.0/16<span class="pl-pds">'</span></span>,  <span class="pl-c"># ip address</span>
+  <span class="pl-s"><span class="pl-pds">'</span>172.16.0.0/16<span class="pl-pds">'</span></span>,  <span class="pl-c"># ip address</span>
   <span class="pl-c1">vagrant:</span> <span class="pl-c1">true</span>,    <span class="pl-c"># for vagrant VM</span>
   <span class="pl-c1">from:</span> <span class="pl-c1">:proxy</span>      <span class="pl-c"># access to this machine via SSH port forwarding from proxy</span>
 )
@@ -107,14 +95,14 @@
 <p>Or</p>
 
 <div class="highlight highlight-ruby"><pre><span class="pl-c"># spec/spec_helper.rb</span>
-<span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>infrataster/rspec<span class="pl-pds">'</span></span>
+<span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>infrataster/rspec<span class="pl-pds">'</span></span>
 
-<span class="pl-s3">Infrataster</span>::<span class="pl-s3">Server</span>.define(<span class="pl-c1">:proxy</span>) <span class="pl-k">do </span>|<span class="pl-vo">server</span>|
-    server.address <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>192.168.0.0/16<span class="pl-pds">'</span></span>
+<span class="pl-c1">Infrataster</span>::<span class="pl-c1">Server</span>.define(<span class="pl-c1">:proxy</span>) <span class="pl-k">do </span>|<span class="pl-smi">server</span>|
+    server.address <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>192.168.0.0/16<span class="pl-pds">'</span></span>
     server.vagrant <span class="pl-k">=</span> <span class="pl-c1">true</span>
 <span class="pl-k">end</span>
-<span class="pl-s3">Infrataster</span>::<span class="pl-s3">Server</span>.define(<span class="pl-c1">:app</span>) <span class="pl-k">do </span>|<span class="pl-vo">server</span>|
-    server.address <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>172.16.0.0/16<span class="pl-pds">'</span></span>
+<span class="pl-c1">Infrataster</span>::<span class="pl-c1">Server</span>.define(<span class="pl-c1">:app</span>) <span class="pl-k">do </span>|<span class="pl-smi">server</span>|
+    server.address <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>172.16.0.0/16<span class="pl-pds">'</span></span>
     server.vagrant <span class="pl-k">=</span> <span class="pl-c1">true</span>
     server.from <span class="pl-k">=</span> <span class="pl-c1">:proxy</span>
 <span class="pl-k">end</span>
@@ -124,15 +112,15 @@
 <p>Then, you can write spec files:</p>
 
 <div class="highlight highlight-ruby"><pre><span class="pl-c"># spec/example_spec.rb</span>
-<span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>spec_helper<span class="pl-pds">'</span></span>
+<span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>spec_helper<span class="pl-pds">'</span></span>
 
 describe server(<span class="pl-c1">:app</span>) <span class="pl-k">do</span>
-  describe http(<span class="pl-s1"><span class="pl-pds">'</span>http://app<span class="pl-pds">'</span></span>) <span class="pl-k">do</span>
-    it <span class="pl-s1"><span class="pl-pds">"</span>responds content including 'Hello Sinatra'<span class="pl-pds">"</span></span> <span class="pl-k">do</span>
-      expect(response.body).to <span class="pl-k">include</span>(<span class="pl-s1"><span class="pl-pds">'</span>Hello Sinatra<span class="pl-pds">'</span></span>)
+  describe http(<span class="pl-s"><span class="pl-pds">'</span>http://app<span class="pl-pds">'</span></span>) <span class="pl-k">do</span>
+    it <span class="pl-s"><span class="pl-pds">"</span>responds content including 'Hello Sinatra'<span class="pl-pds">"</span></span> <span class="pl-k">do</span>
+      expect(response.body).to <span class="pl-k">include</span>(<span class="pl-s"><span class="pl-pds">'</span>Hello Sinatra<span class="pl-pds">'</span></span>)
     <span class="pl-k">end</span>
-    it <span class="pl-s1"><span class="pl-pds">"</span>responds as 'text/html'<span class="pl-pds">"</span></span> <span class="pl-k">do</span>
-      expect(response.headers[<span class="pl-s1"><span class="pl-pds">'</span>content-type<span class="pl-pds">'</span></span>]).to eq(<span class="pl-s1"><span class="pl-pds">"</span>text/html<span class="pl-pds">"</span></span>)
+    it <span class="pl-s"><span class="pl-pds">"</span>responds as 'text/html'<span class="pl-pds">"</span></span> <span class="pl-k">do</span>
+      expect(response.headers[<span class="pl-s"><span class="pl-pds">'</span>content-type<span class="pl-pds">'</span></span>]).to eq(<span class="pl-s"><span class="pl-pds">"</span>text/html<span class="pl-pds">"</span></span>)
     <span class="pl-k">end</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
@@ -154,35 +142,35 @@ describe server(<span class="pl-c1">:app</span>) <span class="pl-k">do</span>
 
 <p>You should define servers in <code>spec_helper.rb</code> like the following:</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-s3">Infrataster</span>::<span class="pl-s3">Server</span>.define(
+<div class="highlight highlight-ruby"><pre><span class="pl-c1">Infrataster</span>::<span class="pl-c1">Server</span>.define(
   <span class="pl-c"># Name of the server, this will be used in the spec files.</span>
   <span class="pl-c1">:proxy</span>,
   <span class="pl-c"># IP address of the server</span>
-  <span class="pl-s1"><span class="pl-pds">'</span>192.168.0.0/16<span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>192.168.0.0/16<span class="pl-pds">'</span></span>,
   <span class="pl-c"># If the server is provided by vagrant and this option is true,</span>
   <span class="pl-c"># SSH configuration to connect to this server is got from `vagrant ssh-config` command automatically.</span>
   <span class="pl-c1">vagrant:</span> <span class="pl-c1">true</span>,
 )
 
-<span class="pl-s3">Infrataster</span>::<span class="pl-s3">Server</span>.define(
+<span class="pl-c1">Infrataster</span>::<span class="pl-c1">Server</span>.define(
   <span class="pl-c"># Name of the server, this will be used in the spec files.</span>
   <span class="pl-c1">:app</span>,
   <span class="pl-c"># IP address of the server</span>
-  <span class="pl-s1"><span class="pl-pds">'</span>172.16.0.0/16<span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>172.16.0.0/16<span class="pl-pds">'</span></span>,
   <span class="pl-c"># If the server is provided by vagrant and this option is true,</span>
   <span class="pl-c"># SSH configuration to connect to this server is got from `vagrant ssh-config` command automatically.</span>
   <span class="pl-c1">vagrant:</span> <span class="pl-c1">true</span>,
   <span class="pl-c"># Which gateway is used to connect to this server by SSH port forwarding?</span>
   <span class="pl-c1">from:</span> <span class="pl-c1">:proxy</span>,
   <span class="pl-c"># options for resources</span>
-  <span class="pl-c1">mysql:</span> {<span class="pl-c1">user:</span> <span class="pl-s1"><span class="pl-pds">'</span>app<span class="pl-pds">'</span></span>, <span class="pl-c1">password:</span> <span class="pl-s1"><span class="pl-pds">'</span>app<span class="pl-pds">'</span></span>},
+  <span class="pl-c1">mysql:</span> {<span class="pl-c1">user:</span> <span class="pl-s"><span class="pl-pds">'</span>app<span class="pl-pds">'</span></span>, <span class="pl-c1">password:</span> <span class="pl-s"><span class="pl-pds">'</span>app<span class="pl-pds">'</span></span>},
 )</pre></div>
 
 <p>You can specify SSH configuration manually too:</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-s3">Infrataster</span>::<span class="pl-s3">Server</span>.define(
+<div class="highlight highlight-ruby"><pre><span class="pl-c1">Infrataster</span>::<span class="pl-c1">Server</span>.define(
   <span class="pl-c"># ...</span>
-  <span class="pl-c1">ssh:</span> {<span class="pl-c1">host_name:</span> <span class="pl-s1"><span class="pl-pds">'</span>hostname<span class="pl-pds">'</span></span>, <span class="pl-c1">user:</span> <span class="pl-s1"><span class="pl-pds">'</span>testuser<span class="pl-pds">'</span></span>, <span class="pl-c1">keys:</span> [<span class="pl-s1"><span class="pl-pds">'</span>/path/to/id_rsa<span class="pl-pds">'</span></span>]}
+  <span class="pl-c1">ssh:</span> {<span class="pl-c1">host_name:</span> <span class="pl-s"><span class="pl-pds">'</span>hostname<span class="pl-pds">'</span></span>, <span class="pl-c1">user:</span> <span class="pl-s"><span class="pl-pds">'</span>testuser<span class="pl-pds">'</span></span>, <span class="pl-c1">keys:</span> [<span class="pl-s"><span class="pl-pds">'</span>/path/to/id_rsa<span class="pl-pds">'</span></span>]}
 )</pre></div>
 
 <h3>
@@ -190,18 +178,18 @@ describe server(<span class="pl-c1">:app</span>) <span class="pl-k">do</span>
 
 <p>Infrataster has "fuzzy IP address" feature. You can pass IP address which has netmask (= CIDR) to <code>Infrataster::Server#define</code>. This needs <code>vagrant</code> option or <code>ssh</code> option which has <code>host_name</code> because this fetches all IP address via SSH and find the matching one.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-s3">Infrataster</span>::<span class="pl-s3">Server</span>.define(
+<div class="highlight highlight-ruby"><pre><span class="pl-c1">Infrataster</span>::<span class="pl-c1">Server</span>.define(
   <span class="pl-c1">:app</span>,
   <span class="pl-c"># find IP address matching 172.16.0.0 ~ 172.16.255.255</span>
-  <span class="pl-s1"><span class="pl-pds">'</span>172.16.0.0/16<span class="pl-pds">'</span></span>,</pre></div>
+  <span class="pl-s"><span class="pl-pds">'</span>172.16.0.0/16<span class="pl-pds">'</span></span>,</pre></div>
 
 <p>Of course, you can set fully-specified IP address too.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-s3">Infrataster</span>::<span class="pl-s3">Server</span>.define(
+<div class="highlight highlight-ruby"><pre><span class="pl-c1">Infrataster</span>::<span class="pl-c1">Server</span>.define(
   <span class="pl-c1">:app</span>,
-  <span class="pl-s1"><span class="pl-pds">'</span>172.16.11.22<span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>172.16.11.22<span class="pl-pds">'</span></span>,
   <span class="pl-c"># or</span>
-  <span class="pl-s1"><span class="pl-pds">'</span>172.16.11.22/32<span class="pl-pds">'</span></span>,</pre></div>
+  <span class="pl-s"><span class="pl-pds">'</span>172.16.11.22/32<span class="pl-pds">'</span></span>,</pre></div>
 
 <h3>
 <a id="ssh_exec" class="anchor" href="#ssh_exec" aria-hidden="true"><span class="octicon octicon-link"></span></a>#ssh_exec</h3>
@@ -209,13 +197,13 @@ describe server(<span class="pl-c1">:app</span>) <span class="pl-k">do</span>
 <p>You can execute a command on the server like the following:</p>
 
 <div class="highlight highlight-ruby"><pre>describe server(<span class="pl-c1">:proxy</span>) <span class="pl-k">do</span>
-  let(<span class="pl-c1">:time</span>) { <span class="pl-s3">Time</span>.now }
+  let(<span class="pl-c1">:time</span>) { <span class="pl-c1">Time</span>.now }
   before <span class="pl-k">do</span>
-    current_server.ssh_exec <span class="pl-s1"><span class="pl-pds">"</span>echo 'Hello' &gt; /tmp/test-<span class="pl-pse">#{</span><span class="pl-s2">time.to_i</span><span class="pl-pse"><span class="pl-s2">}</span></span><span class="pl-pds">"</span></span>
+    current_server.ssh_exec <span class="pl-s"><span class="pl-pds">"</span>echo 'Hello' &gt; /tmp/test-<span class="pl-pse">#{</span><span class="pl-s1">time.to_i</span><span class="pl-pse"><span class="pl-s1">}</span></span><span class="pl-pds">"</span></span>
   <span class="pl-k">end</span>
-  it <span class="pl-s1"><span class="pl-pds">"</span>executes a command on the current server<span class="pl-pds">"</span></span> <span class="pl-k">do</span>
-    result <span class="pl-k">=</span> current_server.ssh_exec(<span class="pl-s1"><span class="pl-pds">"</span>cat /tmp/test-<span class="pl-pse">#{</span><span class="pl-s2">time.to_i</span><span class="pl-pse"><span class="pl-s2">}</span></span><span class="pl-pds">"</span></span>)
-    expect(result.chomp).to eq(<span class="pl-s1"><span class="pl-pds">'</span>Hello<span class="pl-pds">'</span></span>)
+  it <span class="pl-s"><span class="pl-pds">"</span>executes a command on the current server<span class="pl-pds">"</span></span> <span class="pl-k">do</span>
+    result <span class="pl-k">=</span> current_server.ssh_exec(<span class="pl-s"><span class="pl-pds">"</span>cat /tmp/test-<span class="pl-pse">#{</span><span class="pl-s1">time.to_i</span><span class="pl-pse"><span class="pl-s1">}</span></span><span class="pl-pds">"</span></span>)
+    expect(result.chomp).to eq(<span class="pl-s"><span class="pl-pds">'</span>Hello<span class="pl-pds">'</span></span>)
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -227,9 +215,9 @@ describe server(<span class="pl-c1">:app</span>) <span class="pl-k">do</span>
 <p>"Resource" is what you test by Infrataster. For instance, the following code describes <code>http</code> resource.</p>
 
 <div class="highlight highlight-ruby"><pre>describe server(<span class="pl-c1">:app</span>) <span class="pl-k">do</span>
-  describe http(<span class="pl-s1"><span class="pl-pds">'</span>http://example.com<span class="pl-pds">'</span></span>) <span class="pl-k">do</span>
-    it <span class="pl-s1"><span class="pl-pds">"</span>responds content including 'Hello Sinatra'<span class="pl-pds">"</span></span> <span class="pl-k">do</span>
-      expect(response.body).to <span class="pl-k">include</span>(<span class="pl-s1"><span class="pl-pds">'</span>Hello Sinatra<span class="pl-pds">'</span></span>)
+  describe http(<span class="pl-s"><span class="pl-pds">'</span>http://example.com<span class="pl-pds">'</span></span>) <span class="pl-k">do</span>
+    it <span class="pl-s"><span class="pl-pds">"</span>responds content including 'Hello Sinatra'<span class="pl-pds">"</span></span> <span class="pl-k">do</span>
+      expect(response.body).to <span class="pl-k">include</span>(<span class="pl-s"><span class="pl-pds">'</span>Hello Sinatra<span class="pl-pds">'</span></span>)
     <span class="pl-k">end</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
@@ -243,13 +231,13 @@ It accepts <code>method</code>, <code>params</code> and <code>header</code> as o
 
 <div class="highlight highlight-ruby"><pre>describe server(<span class="pl-c1">:app</span>) <span class="pl-k">do</span>
   describe http(
-    <span class="pl-s1"><span class="pl-pds">'</span>http://app.example.com<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>http://app.example.com<span class="pl-pds">'</span></span>,
     <span class="pl-c1">method:</span> <span class="pl-c1">:post</span>,
-    <span class="pl-c1">params:</span> {<span class="pl-s1"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>},
-    <span class="pl-c1">headers:</span> {<span class="pl-s1"><span class="pl-pds">'</span>USER<span class="pl-pds">'</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">'</span>VALUE<span class="pl-pds">'</span></span>}
+    <span class="pl-c1">params:</span> {<span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span> =&gt; <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>},
+    <span class="pl-c1">headers:</span> {<span class="pl-s"><span class="pl-pds">'</span>USER<span class="pl-pds">'</span></span> =&gt; <span class="pl-s"><span class="pl-pds">'</span>VALUE<span class="pl-pds">'</span></span>}
   ) <span class="pl-k">do</span>
-    it <span class="pl-s1"><span class="pl-pds">"</span>responds with content including 'app'<span class="pl-pds">"</span></span> <span class="pl-k">do</span>
-      expect(response.body).to <span class="pl-k">include</span>(<span class="pl-s1"><span class="pl-pds">'</span>app<span class="pl-pds">'</span></span>)
+    it <span class="pl-s"><span class="pl-pds">"</span>responds with content including 'app'<span class="pl-pds">"</span></span> <span class="pl-k">do</span>
+      expect(response.body).to <span class="pl-k">include</span>(<span class="pl-s"><span class="pl-pds">'</span>app<span class="pl-pds">'</span></span>)
 
       <span class="pl-c"># `response` is a instance of `Faraday::Response`</span>
       <span class="pl-c"># See: https://github.com/lostisland/faraday/blob/master/lib/faraday/response.rb</span>
@@ -264,11 +252,11 @@ It accepts <code>method</code>, <code>params</code> and <code>header</code> as o
 <p><code>capybara</code> resource tests your web application by simulating real user's interaction.</p>
 
 <div class="highlight highlight-ruby"><pre>describe server(<span class="pl-c1">:app</span>) <span class="pl-k">do</span>
-  describe capybara(<span class="pl-s1"><span class="pl-pds">'</span>http://app.example.com<span class="pl-pds">'</span></span>) <span class="pl-k">do</span>
-    it <span class="pl-s1"><span class="pl-pds">'</span>shows food list<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
-      visit <span class="pl-s1"><span class="pl-pds">'</span>/<span class="pl-pds">'</span></span>
-      click_link <span class="pl-s1"><span class="pl-pds">'</span>Foods<span class="pl-pds">'</span></span>
-      expect(page).to have_content <span class="pl-s1"><span class="pl-pds">'</span>Yummy Soup<span class="pl-pds">'</span></span>
+  describe capybara(<span class="pl-s"><span class="pl-pds">'</span>http://app.example.com<span class="pl-pds">'</span></span>) <span class="pl-k">do</span>
+    it <span class="pl-s"><span class="pl-pds">'</span>shows food list<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+      visit <span class="pl-s"><span class="pl-pds">'</span>/<span class="pl-pds">'</span></span>
+      click_link <span class="pl-s"><span class="pl-pds">'</span>Foods<span class="pl-pds">'</span></span>
+      expect(page).to have_content <span class="pl-s"><span class="pl-pds">'</span>Yummy Soup<span class="pl-pds">'</span></span>
     <span class="pl-k">end</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
@@ -353,18 +341,16 @@ $ bundle exec rake spec:integration
 <li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
 <li>Create new Pull Request</li>
 </ol>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Infrataster maintained by <a href="https://github.com/ryotarai">ryotarai</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/ryotarai/infrataster">Infrataster</a> is maintained by <a href="https://github.com/ryotarai">ryotarai</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-              <script type="text/javascript">
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -375,6 +361,6 @@ $ bundle exec rake spec:integration
             } catch(err) {}
           </script>
 
-
   </body>
 </html>
+
