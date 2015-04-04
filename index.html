@@ -53,11 +53,11 @@
 
   config.vm.define <span class="pl-c1">:proxy</span> <span class="pl-k">do </span>|<span class="pl-smi">c</span>|
     c.vm.network <span class="pl-s"><span class="pl-pds">"</span>private_network<span class="pl-pds">"</span></span>, <span class="pl-c1">ip:</span> <span class="pl-s"><span class="pl-pds">"</span>192.168.33.10<span class="pl-pds">"</span></span>
-    c.vm.network <span class="pl-s"><span class="pl-pds">"</span>private_network<span class="pl-pds">"</span></span>, <span class="pl-c1">ip:</span> <span class="pl-s"><span class="pl-pds">"</span>171.16.33.10<span class="pl-pds">"</span></span>, <span class="pl-c1">virtualbox__intnet:</span> <span class="pl-s"><span class="pl-pds">"</span>infrataster-example<span class="pl-pds">"</span></span>
+    c.vm.network <span class="pl-s"><span class="pl-pds">"</span>private_network<span class="pl-pds">"</span></span>, <span class="pl-c1">ip:</span> <span class="pl-s"><span class="pl-pds">"</span>172.16.33.10<span class="pl-pds">"</span></span>, <span class="pl-c1">virtualbox__intnet:</span> <span class="pl-s"><span class="pl-pds">"</span>infrataster-example<span class="pl-pds">"</span></span>
   <span class="pl-k">end</span>
 
   config.vm.define <span class="pl-c1">:app</span> <span class="pl-k">do </span>|<span class="pl-smi">c</span>|
-    c.vm.network <span class="pl-s"><span class="pl-pds">"</span>private_network<span class="pl-pds">"</span></span>, <span class="pl-c1">ip:</span> <span class="pl-s"><span class="pl-pds">"</span>171.16.33.11<span class="pl-pds">"</span></span>, <span class="pl-c1">virtualbox__intnet:</span> <span class="pl-s"><span class="pl-pds">"</span>infrataster-example<span class="pl-pds">"</span></span>
+    c.vm.network <span class="pl-s"><span class="pl-pds">"</span>private_network<span class="pl-pds">"</span></span>, <span class="pl-c1">ip:</span> <span class="pl-s"><span class="pl-pds">"</span>172.16.33.11<span class="pl-pds">"</span></span>, <span class="pl-c1">virtualbox__intnet:</span> <span class="pl-s"><span class="pl-pds">"</span>infrataster-example<span class="pl-pds">"</span></span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -279,9 +279,25 @@ It accepts <code>method</code>, <code>params</code> and <code>header</code> as o
 <a id="dns-resource" class="anchor" href="#dns-resource" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 <code>dns</code> resource</h3>
 
-<p><code>dns</code> resource send query to DNS server.</p>
+<p><code>dns</code> resource sends a query to DNS server.</p>
 
 <p><code>dns</code> is provided by <a href="https://github.com/otahi/infrataster-plugin-dns">infrataster-plugin-dns</a> by <a href="https://github.com/otahi">@otahi</a>.</p>
+
+<h3>
+<a id="memcached-resource" class="anchor" href="#memcached-resource" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<code>memcached</code> resource</h3>
+
+<p><code>memcached</code> resource sends a query to memcached server.</p>
+
+<p><code>memcached</code> is provided by <a href="https://github.com/rahulkhengare/infrataster-plugin-memcached">infrataster-plugin-memecached</a> by <a href="https://github.com/rahulkhengare">@rahulkhengare</a>.</p>
+
+<h3>
+<a id="redis-resource" class="anchor" href="#redis-resource" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<code>redis</code> resource</h3>
+
+<p><code>redis</code> resource sends a query to redis server.</p>
+
+<p><code>redis</code> is provided by <a href="https://github.com/rahulkhengare/infrataster-plugin-redis">infrataster-plugin-redis</a> by <a href="https://github.com/rahulkhengare">@rahulkhengare</a>.</p>
 
 <h2>
 <a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
