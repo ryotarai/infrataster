@@ -289,6 +289,12 @@ end
 
 `redis` is provided by [infrataster-plugin-redis](https://github.com/rahulkhengare/infrataster-plugin-redis) by [@rahulkhengare](https://github.com/rahulkhengare).
 
+### `firewall` resource
+
+`firewall` resource tests your firewalls.
+
+`firewall` is provided by [infrataster-plugin-firewall](https://github.com/otahi/infrataster-plugin-firewall) by [@otahi](https://github.com/otahi).
+
 ## Example
 
 * [example](example)
