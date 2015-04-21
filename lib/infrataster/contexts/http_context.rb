@@ -15,6 +15,9 @@ module Infrataster
           conn = Faraday.new(options) do |faraday|
             faraday.request  :url_encoded
             faraday.response :logger, Logger
+            if resource.inflate_gzip?
+              faraday.use      Infrataster::FaradayMiddleware::Gzip
+            end
             faraday.adapter  Faraday.default_adapter
             faraday.basic_auth(*resource.basic_auth) if resource.basic_auth
           end

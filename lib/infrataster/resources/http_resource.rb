@@ -52,6 +52,10 @@ module Infrataster
       def basic_auth
         @options[:basic_auth]
       end
+
+      def inflate_gzip?
+        !!@options[:inflate_gzip]
+      end
     end
   end
 end

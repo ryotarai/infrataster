@@ -14,12 +14,16 @@ describe server(:proxy) do
     end
   end
 
-  # If accept-encoding is not specified explicitly,
-  # Net::HTTP (faraday's default adapter) sends request with accept-encoding=gzip
-  # and inflate response as gzip automaticallly
   describe http('http://static.example.com', headers: {"Accept-Encoding" => "gzip"}) do
     it "gets response compressed by gzip" do
       expect(response.headers['content-encoding']).to eq('gzip')
+    end
+  end
+
+  describe http('http://static.example.com', headers: {"Accept-Encoding" => "gzip"}, inflate_gzip: true) do
+    it "gets response inflated by gzip" do
+      expect(response.headers['content-encoding']).to be_nil
+      expect(response.body).to eq("This is static site.\n")
     end
   end
 
