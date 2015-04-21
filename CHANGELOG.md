@@ -1,5 +1,9 @@
 # Infrataster Changelog
 
+## v0.2.6
+
+* [Inflate response body by gzip if inflate_gzip of http resource is true.]
+
 ## v0.2.5
 
 * [body option of http resource](https://github.com/ryotarai/infrataster/pull/57)
