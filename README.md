@@ -242,6 +242,20 @@ describe server(:app) do
       # See: https://github.com/lostisland/faraday/blob/master/lib/faraday/response.rb
     end
   end
+  
+  # Gzip support
+  describe http('http://app.example.com/gzipped') do
+    it "responds with content deflated by gzip" do
+      expect(response.headers['content-encoding']).to eq('gzip')
+    end
+  end
+  
+  describe http('http://app.example.com/gzipped', inflate_gzip: true) do
+    it "responds with content inflated automatically" do
+      expect(response.headers['content-encoding']).to be_nil
+      expect(response.body).to eq('plain text')
+    end
+  end
 end
 ```
 
