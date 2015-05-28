@@ -8,7 +8,11 @@ module Infrataster
   module Contexts
     class << self
       def from_example(example)
-        example_group = example.metadata[:example_group]
+        example_group = if RSpec::Core::Version::STRING.start_with?('2')
+                          example.metadata[:example_group]
+                        else
+                          example.example_group
+                        end
 
         server_resource = find_described(Resources::ServerResource, example_group)
         resource = find_described(Resources::BaseResource, example_group)
@@ -28,11 +32,19 @@ module Infrataster
 
       private
       def find_described(resource_class, example_group)
-        arg = example_group[:description_args].first
+        arg = if RSpec::Core::Version::STRING.start_with?('2')
+                example_group[:description_args].first
+              else
+                example_group.metadata[:description_args].first
+              end
         if arg.is_a?(resource_class)
           arg
         else
-          parent_example_group = example_group[:example_group]
+          parent_example_group = if RSpec::Core::Version::STRING.start_with?('2')
+                                   example_group[:example_group]
+                                 else
+                                   example_group.parent_groups[1]
+                                 end
           if parent_example_group
             find_described(resource_class, parent_example_group)
           end
