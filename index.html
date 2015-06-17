@@ -12,7 +12,7 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">Infrataster</h1>
-      <h2 class="project-tagline">Infrastructure Acceptance Testing Framework</h2>
+      <h2 class="project-tagline">Infrastructure Behavior Testing Framework</h2>
       <a href="https://github.com/ryotarai/infrataster" class="btn">View on GitHub</a>
       <a href="https://github.com/ryotarai/infrataster/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/ryotarai/infrataster/tarball/master" class="btn">Download .tar.gz</a>
@@ -181,7 +181,8 @@ describe server(<span class="pl-c1">:app</span>) <span class="pl-k">do</span>
 <div class="highlight highlight-ruby"><pre><span class="pl-c1">Infrataster</span>::<span class="pl-c1">Server</span>.define(
   <span class="pl-c1">:app</span>,
   <span class="pl-c"># find IP address matching 172.16.0.0 ~ 172.16.255.255</span>
-  <span class="pl-s"><span class="pl-pds">'</span>172.16.0.0/16<span class="pl-pds">'</span></span>,</pre></div>
+  <span class="pl-s"><span class="pl-pds">'</span>172.16.0.0/16<span class="pl-pds">'</span></span>,
+)</pre></div>
 
 <p>Of course, you can set fully-specified IP address too.</p>
 
@@ -189,7 +190,8 @@ describe server(<span class="pl-c1">:app</span>) <span class="pl-k">do</span>
   <span class="pl-c1">:app</span>,
   <span class="pl-s"><span class="pl-pds">'</span>172.16.11.22<span class="pl-pds">'</span></span>,
   <span class="pl-c"># or</span>
-  <span class="pl-s"><span class="pl-pds">'</span>172.16.11.22/32<span class="pl-pds">'</span></span>,</pre></div>
+  <span class="pl-s"><span class="pl-pds">'</span>172.16.11.22/32<span class="pl-pds">'</span></span>,
+)</pre></div>
 
 <h3>
 <a id="ssh_exec" class="anchor" href="#ssh_exec" aria-hidden="true"><span class="octicon octicon-link"></span></a>#ssh_exec</h3>
@@ -241,6 +243,20 @@ It accepts <code>method</code>, <code>params</code> and <code>header</code> as o
 
       <span class="pl-c"># `response` is a instance of `Faraday::Response`</span>
       <span class="pl-c"># See: https://github.com/lostisland/faraday/blob/master/lib/faraday/response.rb</span>
+    <span class="pl-k">end</span>
+  <span class="pl-k">end</span>
+
+  <span class="pl-c"># Gzip support</span>
+  describe http(<span class="pl-s"><span class="pl-pds">'</span>http://app.example.com/gzipped<span class="pl-pds">'</span></span>) <span class="pl-k">do</span>
+    it <span class="pl-s"><span class="pl-pds">"</span>responds with content deflated by gzip<span class="pl-pds">"</span></span> <span class="pl-k">do</span>
+      expect(response.headers[<span class="pl-s"><span class="pl-pds">'</span>content-encoding<span class="pl-pds">'</span></span>]).to eq(<span class="pl-s"><span class="pl-pds">'</span>gzip<span class="pl-pds">'</span></span>)
+    <span class="pl-k">end</span>
+  <span class="pl-k">end</span>
+
+  describe http(<span class="pl-s"><span class="pl-pds">'</span>http://app.example.com/gzipped<span class="pl-pds">'</span></span>, <span class="pl-c1">inflate_gzip:</span> <span class="pl-c1">true</span>) <span class="pl-k">do</span>
+    it <span class="pl-s"><span class="pl-pds">"</span>responds with content inflated automatically<span class="pl-pds">"</span></span> <span class="pl-k">do</span>
+      expect(response.headers[<span class="pl-s"><span class="pl-pds">'</span>content-encoding<span class="pl-pds">'</span></span>]).to be_nil
+      expect(response.body).to eq(<span class="pl-s"><span class="pl-pds">'</span>plain text<span class="pl-pds">'</span></span>)
     <span class="pl-k">end</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
@@ -298,6 +314,14 @@ It accepts <code>method</code>, <code>params</code> and <code>header</code> as o
 <p><code>redis</code> resource sends a query to redis server.</p>
 
 <p><code>redis</code> is provided by <a href="https://github.com/rahulkhengare/infrataster-plugin-redis">infrataster-plugin-redis</a> by <a href="https://github.com/rahulkhengare">@rahulkhengare</a>.</p>
+
+<h3>
+<a id="firewall-resource" class="anchor" href="#firewall-resource" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<code>firewall</code> resource</h3>
+
+<p><code>firewall</code> resource tests your firewalls.</p>
+
+<p><code>firewall</code> is provided by <a href="https://github.com/otahi/infrataster-plugin-firewall">infrataster-plugin-firewall</a> by <a href="https://github.com/otahi">@otahi</a>.</p>
 
 <h2>
 <a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
