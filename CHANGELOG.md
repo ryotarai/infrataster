@@ -1,5 +1,9 @@
 # Infrataster Changelog
 
+## v0.3.0
+
+* [Fix deprecation of example_group in metadata (by @otahi)](https://github.com/ryotarai/infrataster/pull/64)
+
 ## v0.2.6
 
 * [Inflate response body by gzip if inflate_gzip of http resource is true.]
