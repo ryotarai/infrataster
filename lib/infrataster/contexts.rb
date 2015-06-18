@@ -8,10 +8,10 @@ module Infrataster
   module Contexts
     class << self
       def from_example(example)
-        example_group = example.metadata[:example_group]
+        eg = example_group(example)
 
-        server_resource = find_described(Resources::ServerResource, example_group)
-        resource = find_described(Resources::BaseResource, example_group)
+        server_resource = find_described(Resources::ServerResource, eg)
+        resource = find_described(Resources::BaseResource, eg)
 
         unless server_resource || resource
           # There is neither server_resource or resource
@@ -27,18 +27,40 @@ module Infrataster
       end
 
       private
+
+      def example_group(example)
+        if RSpec::Core::Version::STRING.start_with?('2')
+          example.metadata[:example_group]
+        else
+          example.example_group
+        end
+      end
+
       def find_described(resource_class, example_group)
-        arg = example_group[:description_args].first
+        arg = example_group_arg(example_group)
         if arg.is_a?(resource_class)
           arg
         else
-          parent_example_group = example_group[:example_group]
-          if parent_example_group
-            find_described(resource_class, parent_example_group)
-          end
+          parent_eg = parent_example_group(example_group)
+          find_described(resource_class, parent_eg) if parent_eg
+        end
+      end
+
+      def parent_example_group(example_group)
+        if RSpec::Core::Version::STRING.start_with?('2')
+          example_group[:example_group]
+        else
+          example_group.parent_groups[1]
+        end
+      end
+
+      def example_group_arg(example_group)
+        if RSpec::Core::Version::STRING.start_with?('2')
+          example_group[:description_args].first
+        else
+          example_group.metadata[:description_args].first
         end
       end
     end
   end
 end
-
