@@ -12,13 +12,11 @@ Infrataster::Server.define(
   from: :proxy,
   http: {host: 'example.com'},
 )
+Infrataster::Server.define(
+  :example_com,
+  'example.com',
+)
 
 RSpec.configure do |config|
-  if RSpec::Core::Version::STRING.start_with?('2')
-    config.treat_symbols_as_metadata_keys_with_true_values = true
-  end
-  config.run_all_when_everything_filtered = true
-  config.filter_run :focus
-
   config.order = 'random'
 end

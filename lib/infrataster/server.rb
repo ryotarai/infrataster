@@ -165,9 +165,14 @@ module Infrataster
     end
 
     def determine_address(address)
+      begin
+        ipaddr = IPAddr.new(address)
+      rescue IPAddr::InvalidAddressError
+        return address
+      end
+
       Logger.debug("Determining ip address...")
 
-      ipaddr = IPAddr.new(address)
       if ipaddr.to_range.begin == ipaddr.to_range.end
         # subnet mask is 255.255.255.255
         return ipaddr.to_s

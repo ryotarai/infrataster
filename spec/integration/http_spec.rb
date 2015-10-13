@@ -94,4 +94,11 @@ describe server(:app) do
   end
 end
 
+describe server(:example_com) do
+  describe http('https://example.com') do
+    it "is example domain" do
+      expect(response.body).to include('Example Domain')
+    end
+  end
+end
 
