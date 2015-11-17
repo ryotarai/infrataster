@@ -333,7 +333,7 @@ $ bundle exec rake spec:integration:prepare
 $ bundle exec rake spec:integration
 ```
 
-## Presentations
+## Presentations and Articles
 
 * https://speakerdeck.com/ryotarai/introducing-infrataster
 
@@ -342,6 +342,8 @@ $ bundle exec rake spec:integration
 </a>
 
 * https://speakerdeck.com/ryotarai/infrataster-infra-behavior-testing-framework-number-oedo04
+* [Infratasterでリバースプロキシのテストをする](http://techlife.cookpad.com/entry/2014/11/19/151557)
+  * Google-Translated: [Testing reverse proxy with Infrataster](https://translate.google.com/translate?hl=ja&sl=ja&tl=en&u=http%3A%2F%2Ftechlife.cookpad.com%2Fentry%2F2014%2F11%2F19%2F151557)
 
 ## Changelog
 
