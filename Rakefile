@@ -45,12 +45,12 @@ namespace :spec do
 
     task :start_vm => ['berks_vendor'] do
       puts yellow('Starting VM...')
-      system '/usr/bin/vagrant up'
+      system 'vagrant', 'up'
     end
 
     task :destroy_vm do
       puts yellow('Destroying VM...')
-      system '/usr/bin/vagrant destroy -f'
+      system 'vagrant', 'destroy', '-f'
     end
 
     task :remove_berks do
@@ -59,4 +59,3 @@ namespace :spec do
     end
   end
 end
-

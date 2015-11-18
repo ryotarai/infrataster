@@ -142,7 +142,7 @@ module Infrataster
 
       Dir.mktmpdir do |dir|
         output = File.join(dir, 'ssh-config')
-        `/usr/bin/vagrant ssh-config #{Shellwords.shellescape(name)} > #{Shellwords.shellescape(output)}`
+        `vagrant ssh-config #{Shellwords.shellescape(name)} > #{Shellwords.shellescape(output)}`
         if $?.exitstatus != 0
           raise Error, "`vagrant ssh-config` failed. Please check if VMs are running or not."
         end
@@ -196,4 +196,3 @@ module Infrataster
     end
   end
 end
-
