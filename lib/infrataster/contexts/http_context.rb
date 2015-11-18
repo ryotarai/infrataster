@@ -1,4 +1,5 @@
 require 'faraday'
+require 'faraday_middleware'
 
 module Infrataster
   module Contexts
@@ -7,16 +8,16 @@ module Infrataster
         server.forward_port(resource.uri.port) do |address, port|
           url = "#{resource.uri.scheme}://#{address}:#{port}"
           options = {:url => url}
-          
+
           if resource.uri.scheme == 'https'
             options[:ssl] = resource.ssl_option
           end
-          
+
           conn = Faraday.new(options) do |faraday|
             faraday.request  :url_encoded
             faraday.response :logger, Logger
             if resource.inflate_gzip?
-              faraday.use      Infrataster::FaradayMiddleware::Gzip
+              faraday.use FaradayMiddleware::Gzip
             end
             faraday.adapter  Faraday.default_adapter
             faraday.basic_auth(*resource.basic_auth) if resource.basic_auth
@@ -44,5 +45,3 @@ module Infrataster
     end
   end
 end
-
-

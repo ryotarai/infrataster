@@ -3,7 +3,6 @@ require "infrataster/resources"
 require "infrataster/server"
 require "infrataster/helpers"
 require "infrataster/contexts"
-require "infrataster/faraday_middleware"
 require 'logger'
 
 module Infrataster
