@@ -4,7 +4,7 @@ server {
 	gzip on;
 	gzip_min_length 0;
 
-	root /usr/share/nginx/www;
+	root /usr/share/nginx/html;
 	index index.html index.htm;
 
 	server_name static.example.com;
@@ -22,7 +22,7 @@ server {
 server {
 	listen 80;
 
-	root /usr/share/nginx/www;
+	root /usr/share/nginx/html;
 	index index.html index.htm;
 
 	server_name app.example.com;

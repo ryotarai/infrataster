@@ -25,25 +25,14 @@ namespace :spec do
     integration_dir = 'spec/integration'
 
     desc 'Clean'
-    task :clean => ['destroy_vm', 'remove_berks'] do
+    task :clean => ['destroy_vm'] do
     end
 
     desc 'Prepare'
     task :prepare => ['start_vm'] do
     end
 
-    task :berks_vendor do
-      dir = File.join(integration_dir, 'vm/vendor/cookbooks')
-      # Berkshelf
-      if Dir.exist?(dir)
-        puts yellow("'#{dir}' already exists. If you want update cookbooks, delete the directory and re-run rake command")
-      else
-        puts yellow('Installing cookbooks by berkshelf...')
-        system "cd #{integration_dir}/vm && berks vendor vendor/cookbooks"
-      end
-    end
-
-    task :start_vm => ['berks_vendor'] do
+    task :start_vm do
       puts yellow('Starting VM...')
       system 'vagrant', 'up'
     end
@@ -51,11 +40,6 @@ namespace :spec do
     task :destroy_vm do
       puts yellow('Destroying VM...')
       system 'vagrant', 'destroy', '-f'
-    end
-
-    task :remove_berks do
-      dir = File.join(integration_dir, 'vm/vendor/cookbooks')
-      FileUtils.rm_rf(dir)
     end
   end
 end
