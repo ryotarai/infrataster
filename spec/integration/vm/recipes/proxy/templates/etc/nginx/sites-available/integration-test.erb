@@ -17,6 +17,10 @@ server {
 		auth_basic "Restricted";
 		auth_basic_user_file /etc/nginx/.htpasswd;
 	}
+
+	location = /redirect {
+		return 302 http://$server_name/;
+	}
 }
 
 server {

@@ -39,6 +39,19 @@ describe server(:proxy) do
       expect(response.body).to include('auth')
     end
   end
+
+  describe http('http://static.example.com/redirect') do
+    it "doesn't follow redirects" do
+      expect(response.status).to eq 302
+    end
+  end
+
+  describe http('http://static.example.com/redirect', follow_redirects: true) do
+    it "follows redirects" do
+      expect(response.status).to eq 200
+      expect(response.body).to eq("This is static site.\n")
+    end
+  end
 end
 
 describe server(:app) do

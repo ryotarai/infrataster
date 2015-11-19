@@ -57,14 +57,18 @@ module Infrataster
         !!@options[:inflate_gzip]
       end
 
+      def follow_redirects?
+        !!@options[:follow_redirects]
+      end
+
       def faraday_middlewares
-        middlewares = (@options[:faraday_middlewares] || []).dup
-        middlewares << FaradayMiddleware::Gzip if inflate_gzip?
-        middlewares.map! do |m|
+        (@options[:faraday_middlewares] || []).map do |m|
           Array(m)
         end
+      end
 
-        middlewares
+      def host_mapping
+        @options[:host_mapping] || {}
       end
     end
   end

@@ -13,10 +13,12 @@ module Infrataster
             options[:ssl] = resource.ssl_option
           end
 
+          host = determine_host(address)
+
           conn = Faraday.new(options) do |faraday|
             faraday.request  :url_encoded
             faraday.response :logger, Logger
-            resource.faraday_middlewares.each do |middleware|
+            middlewares(host => address).each do |middleware|
               faraday.use(*middleware)
             end
             faraday.adapter  Faraday.default_adapter
@@ -27,7 +29,7 @@ module Infrataster
             resource.params.each_pair do |k, v|
               req.params[k] = v
             end
-            req.headers['Host'] = determine_host(address)
+            req.headers['Host'] = host
             resource.headers.each_pair do |k, v|
               req.headers[k] = v
             end
@@ -41,6 +43,22 @@ module Infrataster
 
       def determine_host(default)
         resource.uri.host || (server.options[:http] && server.options[:http][:host]) || default
+      end
+
+      private
+
+      def middlewares(host_mapping)
+        host_mapping = resource.host_mapping.merge(host_mapping)
+
+        ms = resource.faraday_middlewares.dup
+        if resource.follow_redirects?
+          ms << [Infrataster::FaradayMiddlewares::FollowRedirects, host_mapping: host_mapping]
+        end
+        if resource.inflate_gzip?
+          ms << [FaradayMiddleware::Gzip]
+        end
+
+        ms
       end
     end
   end
