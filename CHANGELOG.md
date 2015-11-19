@@ -1,5 +1,14 @@
 # Infrataster Changelog
 
+## v0.3.2
+
+* `http` resource: `faraday_middlewares` option
+* `http` resource: `follow_redirects` option
+
+## v0.3.1
+
+* Accept DNS name as server address.
+
 ## v0.3.0
 
 * [Fix deprecation of example_group in metadata (by @otahi)](https://github.com/ryotarai/infrataster/pull/64)
@@ -96,4 +105,3 @@
 ## v0.1.0
 
 * Initial release
-
