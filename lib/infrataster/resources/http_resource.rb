@@ -40,7 +40,7 @@ module Infrataster
       def headers
         @options[:headers]
       end
-	  
+
       def body
         @options[:body]
       end
@@ -56,7 +56,16 @@ module Infrataster
       def inflate_gzip?
         !!@options[:inflate_gzip]
       end
+
+      def faraday_middlewares
+        middlewares = (@options[:faraday_middlewares] || []).dup
+        middlewares << FaradayMiddleware::Gzip if inflate_gzip?
+        middlewares.map! do |m|
+          Array(m)
+        end
+
+        middlewares
+      end
     end
   end
 end
-

@@ -101,4 +101,3 @@ describe server(:example_com) do
     end
   end
 end
-
