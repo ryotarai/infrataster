@@ -263,6 +263,16 @@ describe server(:app) do
       expect(response.status).to eq(200)
     end
   end
+
+  # Custom Faraday middleware
+  describe http('http://app.example.com', faraday_middleware: [
+    YourMiddleware,
+    [YourMiddleware, options]
+  ]) do
+    it "uses the middlewares" do
+      expect(response.status).to eq(200)
+    end
+  end
 end
 ```
 
