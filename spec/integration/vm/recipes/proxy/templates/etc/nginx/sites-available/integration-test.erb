@@ -1,5 +1,9 @@
 server {
 	listen 80;
+	listen 443 ssl;
+
+	ssl_certificate /etc/nginx/server.crt;
+	ssl_certificate_key /etc/nginx/server.key;
 
 	gzip on;
 	gzip_min_length 0;
@@ -19,7 +23,7 @@ server {
 	}
 
 	location = /redirect {
-		return 302 http://$server_name/;
+		return 302 $scheme://$server_name/;
 	}
 }
 

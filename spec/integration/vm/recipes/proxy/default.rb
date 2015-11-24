@@ -20,6 +20,12 @@ link '/etc/nginx/sites-enabled/integration-test' do
   to '/etc/nginx/sites-available/integration-test'
 end
 
+%w!server.key server.crt!.each do |name|
+  remote_file "/etc/nginx/#{name}" do
+    notifies :restart, 'service[nginx]'
+  end
+end
+
 remote_file '/usr/share/nginx/html/index.html' do
   mode '644'
 end
@@ -31,3 +37,4 @@ end
 remote_file '/etc/nginx/.htpasswd' do
   mode '644'
 end
+

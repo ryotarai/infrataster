@@ -25,21 +25,32 @@ namespace :spec do
     integration_dir = 'spec/integration'
 
     desc 'Clean'
-    task :clean => ['destroy_vm'] do
+    task :clean => ['vagrant:destroy'] do
     end
 
     desc 'Prepare'
-    task :prepare => ['start_vm'] do
+    task :prepare => ['vagrant:up'] do
     end
 
-    task :start_vm do
-      puts yellow('Starting VM...')
-      system 'vagrant', 'up'
-    end
+    namespace :vagrant do
+      task :up do
+        puts yellow('Starting VM...')
+        system 'vagrant', 'up'
+      end
 
-    task :destroy_vm do
-      puts yellow('Destroying VM...')
-      system 'vagrant', 'destroy', '-f'
+      task :destroy do
+        puts yellow('Destroying VM...')
+        system 'vagrant', 'destroy', '-f'
+      end
+
+      task :provision do
+        puts yellow('Provisioning VM...')
+        system 'vagrant', 'provision'
+      end
+
+      task :ssh, :name do |t, args|
+        system 'vagrant', 'ssh', args[:name]
+      end
     end
   end
 end
