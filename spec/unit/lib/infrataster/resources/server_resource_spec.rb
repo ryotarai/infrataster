@@ -3,10 +3,11 @@ require 'unit/spec_helper'
 module Infrataster
   module Resources
     describe ServerResource do
-      context "when address invoked" do
-        it "returns address" do
-          app_server = Server.new('name', '127.0.0.2')
-          expect(app_server.address).to eq('127.0.0.2')
+      context 'when invoked address' do
+        it 'returns an address' do
+          Server.define(:app, '127.0.0.1')
+          i = described_class.new(:app)
+          expect(i.address).to eq('127.0.0.1')
         end
       end
     end
