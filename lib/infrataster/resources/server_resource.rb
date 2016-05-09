@@ -15,6 +15,10 @@ module Infrataster
         desc
       end
 
+      def address
+        server.address
+      end
+
       def server
         Server.find_by_name(@name)
       end
