@@ -154,10 +154,23 @@ module Infrataster
 
     def fetch_all_addresses
       result = []
-      ssh_exec('PATH="/sbin:$PATH" ip addr').each_line do |line|
-        #inet 10.0.2.15/24 brd 10.0.2.255 scope global eth0
-        if %r{inet ([^/]+)} =~ line
-          result << $1
+      uname = ssh_exec('uname -s')
+      case uname
+      when /(FreeBSD|OpenBSD)/
+        ssh_exec('/sbin/ifconfig').each_line do |line|
+          # inet 169.254.252.26 netmask 0xfffffffc broadcast 169.254.252.27 (regular interface)
+          # inet 10.100.255.2 --> 10.100.255.1 netmask 0xffffffff (tunnel interface)
+          if %r{inet (\S+) (?:-->[ ].+[ ])?netmask} =~ line
+            result << $1
+          end
+        end
+      else
+        ssh_exec('/sbin/ip addr').each_line do |line|
+          # Linux
+          # inet 10.0.2.15/24 brd 10.0.2.255 scope global eth0
+          if %r{inet ([^/]+)} =~ line
+            result << $1
+          end
         end
       end
 
