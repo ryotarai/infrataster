@@ -265,7 +265,7 @@ describe server(:app) do
   end
 
   # Custom Faraday middleware
-  describe http('http://app.example.com', faraday_middleware: [
+  describe http('http://app.example.com', faraday_middlewares: [
     YourMiddleware,
     [YourMiddleware, options]
   ]) do
